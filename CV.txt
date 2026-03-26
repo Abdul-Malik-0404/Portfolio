@@ -1,0 +1,79 @@
+AbdulMalik
+
+MOBILE-ALT +94 766 927 222 / +94 721 054 073
+Envelope abdulmaliksadath@gmail.com
+LINKEDIN-IN Abdul Malik
+Github Abdul-Malik-0404
+
+Aspiring Software Engineer & AI Developer
+Professional Summary
+
+An aspiring Computer Science student with a passion for AI and Machine Learning. Dedicated to developing practical software
+solutions and currently building a strong foundation in data science and full-stack development.
+
+Education
+2024–2028 BSc (Hons) in Computer Science, University of Westminster (UK), Affiliated with IIT, Sri Lanka
+Expected Graduation: 2028
+
+Jan 2026 Certificate in Machine Learning, IIT Professional Development Unit (PDU), Sri Lanka
+2023–2024 Foundation Certificate in Higher Education, Informatics Institute of Technology, Sri Lanka
+2023 GCE Ordinary Level, Nasriya Central College, Chilaw, Sri Lanka
+
+Technical Skills
+Languages
+Data Science
+Tools
+Soft Skills
+
+Python, Java, JavaScript, TypeScript, C++, HTML, CSS, Shell, Kotlin
+Pandas, NumPy, Scikit-Learn, Matplotlib
+Linux (Arch), Git, Docker, Android Studio, VS Code, Neovim, IntelliJ IDEA, Netbeans
+Communication, Teamwork, Leadership, Problem Solving, Adaptability, Critical Thinking
+
+Projects
+2025 Dotfiles (Arch Linux Configuration), Individual Project
+○
+○
+
+Created and maintained personal Arch Linux configurations and scripts.
+Utilized Shell scripting to optimize the development environment and automate setup tasks.
+
+2025 All-rounder (Social Networking App), Group Project, IIT
+○
+○
+
+Developed a TypeScript web application tailored for school students in Sri Lanka.
+Created a platform for sharing extracurricular activities, achievements, and facilitating resource sharing between schools.
+
+2024 Hotkeys, Individual Project
+○
+
+Developed a set of keyboard shortcuts using C++ to emulate function keys on compact keyboards.
+
+Extracurricular Activities
+Volunteer Assisted in organizing and managing the IIT Iftar event in 2026.
+IEEEXtreme Participant in the 24-hour global algorithmic coding hackathon.
+IEEE Active member of the Institute of Electrical and Electronics Engineers since 2024.
+
+Languages
+Proficiency Tamil (Native/Mother Tongue), Sinhala (Fluent), English (Excellent)
+
+References
+
+Academic
+
+Ms. Azmiya Cassim
+Assistant Lecturer
+Informatics Institute of Technology
+azmiya.c@iit.ac.lk
++94 76 55 44 237
+
+Academic
+
+Mr. Jiehfeng Hsu
+Assistant Lecturer
+Faculty of Computing, IIT
+jiehfeng.h@iit.ac.lk
+0703452684
+
+
