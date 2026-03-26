@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import { Github } from 'lucide-react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,24 +28,41 @@ export default function Projects() {
       >
         <motion.div variants={itemVariants} className="project-card glass-card hover-glow interactive">
           <div className="project-year">2025</div>
-          <h3>Dotfiles <span>(Arch Linux Configuration)</span></h3>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+            <h3 style={{ marginBottom: 0 }}>Dotfiles <span>(Arch Linux Configuration)</span></h3>
+            <a href="https://github.com/Abdul-Malik-0404/dotfiles" target="_blank" aria-label="GitHub" style={{ color: 'var(--text-color)', transition: 'color 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-cyan)'} onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-color)'}>
+              <Github size={22} />
+            </a>
+          </div>
           <p>
             Created and maintained personal Arch Linux configurations and scripts. 
             Utilized Shell scripting to optimize the development environment and automate setup tasks.
           </p>
         </motion.div>
+        
         <motion.div variants={itemVariants} className="project-card glass-card hover-glow interactive">
           <div className="project-year">2025</div>
-          <h3>All-rounder <span>(Social Networking App)</span></h3>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+            <h3 style={{ marginBottom: 0 }}>All-rounder <span>(Social Networking App)</span></h3>
+            <a href="https://github.com/Abdul-Malik-0404/All-rounder" target="_blank" aria-label="GitHub" style={{ color: 'var(--text-color)', transition: 'color 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-cyan)'} onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-color)'}>
+              <Github size={22} />
+            </a>
+          </div>
           <p>
             Developed a TypeScript web application tailored for school students in Sri Lanka. 
             Created a platform for sharing extracurricular activities, achievements, and 
             facilitating resource sharing between schools.
           </p>
         </motion.div>
+        
         <motion.div variants={itemVariants} className="project-card glass-card hover-glow interactive">
           <div className="project-year">2024</div>
-          <h3>Hotkeys</h3>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+            <h3 style={{ marginBottom: 0 }}>Hotkeys</h3>
+            <a href="https://github.com/Abdul-Malik-0404/hotkeys" target="_blank" aria-label="GitHub" style={{ color: 'var(--text-color)', transition: 'color 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-cyan)'} onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-color)'}>
+              <Github size={22} />
+            </a>
+          </div>
           <p>
             Developed a set of keyboard shortcuts using C++ to emulate function keys on compact keyboards.
           </p>
