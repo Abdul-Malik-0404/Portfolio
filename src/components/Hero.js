@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import { Mail, Linkedin, Github } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -19,13 +20,13 @@ export default function Hero() {
         </p>
         <div className="social-links">
           <a href="mailto:abdulmaliksadath@gmail.com" target="_blank" aria-label="Email">
-            <span style={{ fontSize: '1.2rem' }}>✉</span>
+            <Mail size={24} />
           </a>
           <a href="https://linkedin.com/in/abdul-malik" target="_blank" aria-label="LinkedIn">
-            <span style={{ fontSize: '1.2rem' }}>in</span>
+            <Linkedin size={24} />
           </a>
           <a href="https://github.com/Abdul-Malik-0404" target="_blank" aria-label="GitHub">
-            <span style={{ fontSize: '1.2rem' }}>git</span>
+            <Github size={24} />
           </a>
         </div>
       </motion.div>
