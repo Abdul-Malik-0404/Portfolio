@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Exclude local and AI files
+AGENTS.md
+CLAUDE.md
+CV.pdf
+CV.txt
