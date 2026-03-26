@@ -1,10 +1,16 @@
 'use client';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section id="home" className="hero section-reveal">
-      <div className="hero-content glass-card">
-        <h1 className="glitch-title">Abdul Malik</h1>
+    <section id="home" className="hero">
+      <motion.div 
+        className="hero-content glass-card hypr-border hover-glow interactive"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <h1 className="glitch-title" data-text="Abdul Malik">Abdul Malik</h1>
         <h2 className="subtitle">Aspiring Software Engineer & AI Developer</h2>
         <p className="summary">
           An aspiring Computer Science student with a passion for AI and Machine Learning. 
@@ -22,7 +28,7 @@ export default function Hero() {
             <span style={{ fontSize: '1.2rem' }}>git</span>
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
