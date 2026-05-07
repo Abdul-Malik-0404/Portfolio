@@ -1,6 +1,8 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import LinkedinIcon from './LinkedinIcon';
+import GithubIcon from './GithubIcon';
 
 export default function Hero() {
   return (
@@ -23,10 +25,10 @@ export default function Hero() {
             <Mail size={24} />
           </a>
           <a href="https://linkedin.com/in/abdul-malik" target="_blank" aria-label="LinkedIn">
-            <Linkedin size={24} />
+            <LinkedinIcon size={24} />
           </a>
           <a href="https://github.com/Abdul-Malik-0404" target="_blank" aria-label="GitHub">
-            <Github size={24} />
+            <GithubIcon size={24} />
           </a>
         </div>
       </motion.div>

@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Github } from 'lucide-react';
+import Link from 'next/link';
+import { projects } from '../data/projects';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,62 +27,23 @@ export default function Projects() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.a 
-          href="https://github.com/Abdul-Malik-0404/dotfiles" 
-          target="_blank"
-          rel="noopener noreferrer"
-          variants={itemVariants} 
-          className="project-card glass-card hover-glow interactive"
-          style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'none' }}
-        >
-          <div className="project-year">2025</div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-            <h3 style={{ marginBottom: 0 }}>Dotfiles <span>(Arch Linux Configuration)</span></h3>
-            <Github size={22} style={{ color: 'var(--text-color)' }} />
-          </div>
-          <p>
-            Created and maintained personal Arch Linux configurations and scripts. 
-            Utilized Shell scripting to optimize the development environment and automate setup tasks.
-          </p>
-        </motion.a>
-        
-        <motion.a 
-          href="https://github.com/Abdul-Malik-0404/All-rounder" 
-          target="_blank"
-          rel="noopener noreferrer"
-          variants={itemVariants} 
-          className="project-card glass-card hover-glow interactive"
-          style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'none' }}
-        >
-          <div className="project-year">2025</div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-            <h3 style={{ marginBottom: 0 }}>All-rounder <span>(Social Networking App)</span></h3>
-            <Github size={22} style={{ color: 'var(--text-color)' }} />
-          </div>
-          <p>
-            Developed a TypeScript web application tailored for school students in Sri Lanka. 
-            Created a platform for sharing extracurricular activities, achievements, and 
-            facilitating resource sharing between schools.
-          </p>
-        </motion.a>
-        
-        <motion.a 
-          href="https://github.com/Abdul-Malik-0404/hotkeys" 
-          target="_blank"
-          rel="noopener noreferrer"
-          variants={itemVariants} 
-          className="project-card glass-card hover-glow interactive"
-          style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'none' }}
-        >
-          <div className="project-year">2024</div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-            <h3 style={{ marginBottom: 0 }}>Hotkeys</h3>
-            <Github size={22} style={{ color: 'var(--text-color)' }} />
-          </div>
-          <p>
-            Developed a set of keyboard shortcuts using C++ to emulate function keys on compact keyboards.
-          </p>
-        </motion.a>
+        {projects.map((project) => (
+          <motion.div key={project.id} variants={itemVariants} style={{ height: '100%' }}>
+            <Link 
+              href={`/projects/${project.id}`}
+              className="project-card glass-card hover-glow interactive"
+              style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'none', height: '100%' }}
+            >
+              <div className="project-year">{project.year}</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                <h3 style={{ marginBottom: 0 }}>{project.title} <span>({project.type})</span></h3>
+              </div>
+              <p>
+                {project.description}
+              </p>
+            </Link>
+          </motion.div>
+        ))}
       </motion.div>
     </section>
   );

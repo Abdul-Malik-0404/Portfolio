@@ -10,33 +10,7 @@ export default function Footer() {
   return (
     <>
       <section id="contact" className="section">
-        <h2 className="section-title">References</h2>
-        <motion.div 
-          className="grid-2-col" 
-          style={{ marginBottom: '3rem' }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
-          }}
-        >
-          <motion.div variants={itemVariants} className="ref-card glass-card hover-glow interactive">
-            <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>Ms. Azmiya Cassim</h4>
-            <p style={{ color: 'var(--accent-cyan)', fontSize: '0.9rem', marginBottom: '0.1rem' }}>Assistant Lecturer</p>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1rem' }}>Informatics Institute of Technology</p>
-            <a href="mailto:azmiya.c@iit.ac.lk" style={{ display: 'block', marginBottom: '0.2rem' }}>azmiya.c@iit.ac.lk</a>
-            <p style={{ display: 'block', marginBottom: '0.2rem' }}>+94 76 55 44 237</p>
-          </motion.div>
-          <motion.div variants={itemVariants} className="ref-card glass-card hover-glow interactive">
-            <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>Mr. Jiehfeng Hsu</h4>
-            <p style={{ color: 'var(--accent-cyan)', fontSize: '0.9rem', marginBottom: '0.1rem' }}>Assistant Lecturer</p>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1rem' }}>Faculty of Computing, IIT</p>
-            <a href="mailto:jiehfeng.h@iit.ac.lk" style={{ display: 'block', marginBottom: '0.2rem' }}>jiehfeng.h@iit.ac.lk</a>
-            <p style={{ display: 'block', marginBottom: '0.2rem' }}>0703452684</p>
-          </motion.div>
-        </motion.div>
+
         
         <motion.div 
           className="contact-footer glass-card hover-glow interactive" 
