@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Home } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +25,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-content">
-        <a href="#" className="logo">AM.</a>
+        <a href="#" className="logo"><Home size={28} /></a>
         <ul className="nav-links">
           <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>About</a></li>
           <li><a href="#education" onClick={(e) => scrollToSection(e, 'education')}>Education</a></li>

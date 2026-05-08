@@ -10,7 +10,7 @@ export default function DotfilesProject() {
       <div className="blob blob-1"></div>
       <div className="blob blob-2"></div>
       <Navbar />
-      
+
       <main style={{ paddingTop: '120px', minHeight: '100vh' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <Link href="/#projects" className="back-btn">
@@ -19,10 +19,11 @@ export default function DotfilesProject() {
 
           <div className="glass-card hypr-border" style={{ padding: '3rem 2rem' }}>
             <div className="project-detail-header">
-              <span className="project-detail-type">2025 // Arch Linux Configuration</span>
+              <span className="project-detail-type">2025 // Arch Linux Configuration <span style={{ color: 'red' }}>(Not Maintained)</span></span>
               <h1 className="project-detail-title">Dotfiles</h1>
-              
+
               <div className="tech-stack">
+                {/* <span className="tech-badge" style={{ borderColor: 'var(--accent-magenta)', color: 'var(--accent-magenta)', background: 'rgba(255, 0, 255, 0.1)' }}>Not Maintained</span> */}
                 <span className="tech-badge">Arch Linux</span>
                 <span className="tech-badge">Bash</span>
                 <span className="tech-badge">Shell</span>
@@ -34,13 +35,12 @@ export default function DotfilesProject() {
               <p style={{ color: 'var(--text-color)' }}>
                 Created and maintained personal Arch Linux configurations and scripts. Utilized Shell scripting to optimize the development environment and automate setup tasks.
               </p>
-            </div>
-
-            <h3 style={{ color: '#fff', marginBottom: '1rem', fontSize: '1.4rem' }}>Media & Demonstrations</h3>
-            <div className="project-media-grid">
-              {/* Add screenshots, videos, demonstrations here */}
-              <div className="media-placeholder">[ Desktop Screenshot Unavailable ]</div>
-              <div className="media-placeholder">[ Shell Script Snippet ]</div>
+              <p style={{ color: 'var(--text-color)' }}>
+                I personally loved this one but sadly I switched to a different setup made by someone else.
+                <br />
+                <br />
+                <b>Check it out:</b> <a href="https://github.com/end-4/dots-hyprland" target="_blank" rel="noopener noreferrer" className="back-btn">@end-4/dots-hyprland</a>
+              </p>
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>

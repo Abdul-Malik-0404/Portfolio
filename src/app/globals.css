@@ -234,7 +234,7 @@ main {
   overflow: visible;
 }
 
-.glitch-title {
+.hero-title {
   font-size: 4.5rem;
   margin-bottom: 0.5rem;
   font-weight: 800;
@@ -245,50 +245,6 @@ main {
   position: relative;
   display: inline-block;
 }
-
-.glitch-title::before,
-.glitch-title::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-}
-
-.glitch-title::before {
-  left: 3px;
-  text-shadow: -2px 0 var(--accent-magenta);
-  clip: rect(24px, 550px, 90px, 0);
-  animation: glitch-anim-2 3s infinite linear alternate-reverse;
-}
-
-.glitch-title::after {
-  left: -3px;
-  text-shadow: -2px 0 var(--accent-cyan);
-  clip: rect(85px, 550px, 140px, 0);
-  animation: glitch-anim 2.5s infinite linear alternate-reverse;
-}
-
-@keyframes glitch-anim {
-  0% { clip: rect(10px, 9999px, 44px, 0); }
-  20% { clip: rect(85px, 9999px, 11px, 0); }
-  40% { clip: rect(14px, 9999px, 100px, 0); }
-  60% { clip: rect(66px, 9999px, 80px, 0); }
-  80% { clip: rect(110px, 9999px, 20px, 0); }
-  100% { clip: rect(33px, 9999px, 110px, 0); }
-}
-
-@keyframes glitch-anim-2 {
-  0% { clip: rect(29px, 9999px, 15px, 0); }
-  20% { clip: rect(110px, 9999px, 100px, 0); }
-  40% { clip: rect(15px, 9999px, 85px, 0); }
-  60% { clip: rect(80px, 9999px, 50px, 0); }
-  80% { clip: rect(33px, 9999px, 95px, 0); }
-  100% { clip: rect(95px, 9999px, 14px, 0); }
-}
-
 .subtitle {
   font-size: 1.5rem;
   color: var(--text-muted);
@@ -743,4 +699,72 @@ footer {
   background: #fff;
   color: var(--bg-color);
   box-shadow: 0 0 20px rgba(0, 255, 238, 0.4);
+}
+
+/* Skills Modal */
+.skills-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.skills-modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 4px;
+  padding: 3rem 2rem;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0, 255, 238, 0.2);
+  cursor: default;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 2010;
+  cursor: none !important;
+}
+
+.modal-close-btn:hover {
+  color: var(--accent-magenta);
+  transform: scale(1.1);
+}
+
+.skills-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.skill-badge-card {
+  background: rgba(0, 255, 238, 0.05);
+  border: 1px solid rgba(0, 255, 238, 0.2);
+  padding: 1rem 0.5rem;
+  text-align: center;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.skill-badge-card:hover {
+  background: rgba(0, 255, 238, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 238, 0.1);
 }
