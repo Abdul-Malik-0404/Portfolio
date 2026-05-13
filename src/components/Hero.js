@@ -30,7 +30,7 @@ export default function Hero() {
           <a href="mailto:abdulmaliksadath@gmail.com" target="_blank" aria-label="Email">
             <Mail size={24} />
           </a>
-          <a href="https://linkedin.com/in/abdul-malik" target="_blank" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/abdul-malik-9a448b293" target="_blank" aria-label="LinkedIn">
             <LinkedinIcon size={24} />
           </a>
           <a href="https://github.com/Abdul-Malik-0404" target="_blank" aria-label="GitHub">
