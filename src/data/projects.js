@@ -1,5 +1,16 @@
 export const projects = [
   {
+    id: 'jeb',
+    title: 'Jeb',
+    type: 'New Project',
+    year: '2026',
+    description: '[Brief description of Jeb]',
+    about: '[Detailed description of Jeb]',
+    techStack: ['Tech 1', 'Tech 2'],
+    githubLink: 'https://github.com/Abdul-Malik-0404/',
+    media: []
+  },
+  {
     id: 'zawj',
     title: 'Zawj',
     type: 'E2EE App & Autonomous AI Dev Workflow',
