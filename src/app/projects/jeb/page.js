@@ -25,7 +25,7 @@ export default function JebProject() {
               <div className="tech-stack">
                 <span className="tech-badge">FastAPI</span>
                 <span className="tech-badge">Next.js</span>
-                <span className="tech-badge">Gemini API</span>
+                <span className="tech-badge">Custom AI Model</span>
                 <span className="tech-badge">PostgreSQL</span>
                 <span className="tech-badge">Playwright</span>
                 <span className="tech-badge">Celery</span>
@@ -34,12 +34,12 @@ export default function JebProject() {
 
             <div className="project-content">
               <h3 style={{ color: '#fff', marginBottom: '1rem', fontSize: '1.4rem' }}>About the Project</h3>
-              Jeb is a minimalist, agentic web dashboard designed to automate the job search and application process. It specializes in finding roles in specific regions (defaulting to Colombo, Sri Lanka), analyzing job descriptions against a Master CV, and generating tailored, ATS-friendly resumes.
+              Jeb is a minimalist, agentic web dashboard designed to automate the job search and application process. It specializes in finding roles across various regions, analyzing job descriptions against a Master CV, and generating tailored, ATS-friendly resumes.
               <br />
               <br />
               <strong style={{ color: '#fff' }}>Key Features:</strong><br />
               • <strong>Automated Scraping:</strong> Stealthy job board scraping using Playwright (Targeting TopJobs.lk and others).<br />
-              • <strong>AI Analysis:</strong> Skill extraction and match scoring using Google Gemini 3.1 Pro.<br />
+              • <strong>AI Analysis:</strong> Skill extraction and match scoring using a custom AI model (currently in development).<br />
               • <strong>Tailored Resumes:</strong> AI-driven CV rewriting to emphasize matching skills while maintaining 100% factual accuracy.<br />
               • <strong>ATS-Friendly PDF:</strong> High-fidelity PDF generation via WeasyPrint and text extraction via PyMuPDF.<br />
               <br />
