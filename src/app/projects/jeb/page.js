@@ -25,7 +25,8 @@ export default function JebProject() {
               <div className="tech-stack">
                 <span className="tech-badge">FastAPI</span>
                 <span className="tech-badge">Next.js</span>
-                <span className="tech-badge">Custom AI Model</span>
+                <span className="tech-badge">Custom ML Model</span>
+                <span className="tech-badge">Hugging Face</span>
                 <span className="tech-badge">PostgreSQL</span>
                 <span className="tech-badge">Playwright</span>
                 <span className="tech-badge">Celery</span>
@@ -39,7 +40,7 @@ export default function JebProject() {
               <br />
               <strong style={{ color: '#fff' }}>Key Features:</strong><br />
               • <strong>Automated Scraping:</strong> Stealthy job board scraping using Playwright (Targeting TopJobs.lk and others).<br />
-              • <strong>AI Analysis:</strong> Skill extraction and match scoring using a custom AI model (currently in development).<br />
+              • <strong>AI Analysis:</strong> Skill extraction and match scoring using a custom Machine Learning model (trained on a Hugging Face dataset and implemented via FastAPI).<br />
               • <strong>Tailored Resumes:</strong> AI-driven CV rewriting to emphasize matching skills while maintaining 100% factual accuracy.<br />
               • <strong>ATS-Friendly PDF:</strong> High-fidelity PDF generation via WeasyPrint and text extraction via PyMuPDF.<br />
               <br />

@@ -5,8 +5,8 @@ export const projects = [
     type: 'AI Job Scout & Resume Tailor',
     year: '2026',
     description: 'An autonomous web dashboard designed to automate the job search process by scraping listings and using AI to generate tailored, ATS-friendly resumes.',
-    about: 'Jeb is a minimalist, agentic web dashboard designed to automate the job search and application process. It specializes in finding roles across various regions, analyzing job descriptions against a Master CV, and generating tailored, ATS-friendly resumes.\n\nKey features include automated stealthy job board scraping using Playwright, AI-driven CV rewriting for maximum skill-match using a custom AI model (currently in development), and high-fidelity PDF generation via WeasyPrint. The backend leverages FastAPI, Celery for background processing, and PostgreSQL.',
-    techStack: ['FastAPI', 'Next.js', 'Custom AI Model', 'PostgreSQL', 'Docker', 'Playwright'],
+    about: 'Jeb is a minimalist, agentic web dashboard designed to automate the job search and application process. It specializes in finding roles across various regions, analyzing job descriptions against a Master CV, and generating tailored, ATS-friendly resumes.\n\nKey features include automated stealthy job board scraping using Playwright, AI-driven CV rewriting for maximum skill-match using a custom Machine Learning model (trained on a Hugging Face dataset and implemented via FastAPI), and high-fidelity PDF generation via WeasyPrint. The backend leverages FastAPI, Celery for background processing, and PostgreSQL.',
+    techStack: ['FastAPI', 'Next.js', 'Custom ML Model', 'Hugging Face', 'PostgreSQL', 'Docker', 'Playwright'],
     githubLink: 'https://github.com/Abdul-Malik-0404/Jeb',
     media: []
   },
