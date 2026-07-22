@@ -8,8 +8,8 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-export default function BlogPost({ params }) {
-  const { slug } = params;
+export default async function BlogPost({ params }) {
+  const { slug } = await params;
   const post = blogs.find((b) => b.id === slug);
 
   if (!post) {
