@@ -7,7 +7,7 @@ const skillsData = [
   { 
     id: 'languages', 
     title: 'Languages', 
-    items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C++', 'HTML', 'CSS', 'Shell', 'Kotlin'] 
+    items: ['Python', 'Java', 'C#', 'JavaScript', 'TypeScript', 'C++', 'HTML', 'CSS', 'Shell', 'Kotlin'] 
   },
   { 
     id: 'data-science', 
