@@ -38,29 +38,17 @@ export default function CustomCursor() {
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return null;
 
   return (
-    <>
-      <motion.div
-        className="custom-cursor-dot"
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-          scale: isHovering ? 0 : 1,
-          opacity: mousePosition.x > 0 ? 1 : 0
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
-      />
-      <motion.div
-        className="custom-cursor-outline"
-        animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
-          scale: isHovering ? 1.5 : 1,
-          opacity: mousePosition.x > 0 ? 1 : 0,
-          borderColor: isHovering ? 'var(--accent-magenta)' : 'var(--accent-cyan)',
-          backgroundColor: isHovering ? 'rgba(255, 0, 255, 0.1)' : 'transparent'
-        }}
-        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
-      />
-    </>
+    <motion.div
+      className="custom-cursor-outline"
+      animate={{
+        x: mousePosition.x - 20,
+        y: mousePosition.y - 20,
+        scale: isHovering ? 1.4 : 1,
+        opacity: mousePosition.x > 0 ? 0.6 : 0,
+        borderColor: isHovering ? 'var(--accent-magenta)' : 'var(--accent-cyan)',
+        backgroundColor: isHovering ? 'rgba(255, 0, 255, 0.08)' : 'transparent'
+      }}
+      transition={{ type: "spring", stiffness: 200, damping: 20, mass: 0.4 }}
+    />
   );
 }

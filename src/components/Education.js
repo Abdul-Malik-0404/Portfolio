@@ -67,7 +67,7 @@ export default function Education() {
             onClick={() => setSelectedId(item.id)}
             variants={itemVariants} 
             className="timeline-item glass-card hover-glow interactive"
-            style={{ cursor: 'none' }}
+            style={{ cursor: 'pointer' }}
           >
             <div className="timeline-dot"></div>
             <div className="timeline-content">

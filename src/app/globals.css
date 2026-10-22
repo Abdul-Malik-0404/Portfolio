@@ -492,40 +492,7 @@ main {
 
 
 
-.contact-footer {
-  text-align: center;
-  background: rgba(15, 15, 15, 0.5);
-  border: 1px solid var(--glass-border);
-}
 
-.contact-footer h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #fff;
-}
-
-.contact-footer p {
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-}
-
-.phone-numbers {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.phone-numbers span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-  color: var(--accent-cyan);
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border-color);
-  background: rgba(0, 255, 238, 0.05);
-}
 
 /* Footer */
 footer {
@@ -577,10 +544,8 @@ footer {
   box-shadow: 0 0 15px rgba(0, 255, 238, 0.3);
 }
 
-@media (pointer: fine) {
-  body, a, button, .hover-glow, [role="button"] {
-    cursor: none !important;
-  }
+a, button, [role="button"], .interactive, .hover-glow {
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -692,7 +657,7 @@ footer {
   font-size: 1rem;
   border: none;
   transition: all 0.2s ease;
-  cursor: none !important;
+  cursor: pointer;
 }
 
 .action-btn:hover {
@@ -736,7 +701,7 @@ footer {
   color: var(--text-muted);
   transition: color 0.2s ease, transform 0.2s ease;
   z-index: 2010;
-  cursor: none !important;
+  cursor: pointer;
 }
 
 .modal-close-btn:hover {

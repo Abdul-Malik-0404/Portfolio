@@ -65,7 +65,7 @@ export default function Skills() {
             key={skill.id} 
             variants={itemVariants} 
             className="skill-category glass-card hover-glow interactive"
-            style={{ cursor: 'none' }}
+            style={{ cursor: 'pointer' }}
           >
             <motion.h3 layoutId={`title-${skill.id}`}>{skill.title}</motion.h3>
             <p>{skill.items.join(' · ')}</p>

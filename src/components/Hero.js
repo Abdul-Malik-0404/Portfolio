@@ -17,7 +17,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         onClick={() => setIsExpanded(true)}
-        style={{ cursor: 'none' }}
+        style={{ cursor: 'pointer' }}
       >
         <motion.h1 layoutId="hero-title" className="hero-title">Abdul Malik</motion.h1>
         <motion.h2 layoutId="hero-subtitle" className="subtitle">Aspiring Software Engineer & AI Developer</motion.h2>

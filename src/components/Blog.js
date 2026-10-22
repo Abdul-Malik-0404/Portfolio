@@ -32,7 +32,7 @@ export default function Blog() {
             <Link 
               href={`/blog/${post.id}`}
               className="glass-card hover-glow interactive"
-              style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'none', height: '100%' }}
+              style={{ display: 'block', textDecoration: 'none', color: 'inherit', cursor: 'pointer', height: '100%' }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                 <span className="project-year" style={{ marginBottom: 0 }}>{post.date}</span>

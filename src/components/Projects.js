@@ -38,7 +38,7 @@ export default function Projects() {
               layoutId={`proj-card-${project.id}`}
               onClick={() => setSelectedId(project.id)}
               className="project-card glass-card hover-glow interactive"
-              style={{ display: 'block', cursor: 'none', height: '100%' }}
+              style={{ display: 'block', cursor: 'pointer', height: '100%' }}
             >
               <motion.div layoutId={`proj-year-${project.id}`} className="project-year">{project.year}</motion.div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>

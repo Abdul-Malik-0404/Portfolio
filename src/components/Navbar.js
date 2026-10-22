@@ -27,12 +27,12 @@ export default function Navbar() {
       <div className="nav-content">
         <a href="#" className="logo"><Home size={28} /></a>
         <ul className="nav-links">
-          <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>About</a></li>
+          <li><a href="#about" onClick={(e) => scrollToSection(e, 'home')}>About</a></li>
           <li><a href="#education" onClick={(e) => scrollToSection(e, 'education')}>Education</a></li>
           <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>Skills</a></li>
           <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>Projects</a></li>
           <li><a href="#blog" onClick={(e) => scrollToSection(e, 'blog')}>Blog</a></li>
-          <li><a href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>Contact</a></li>
+          <li><a href="#extra" onClick={(e) => scrollToSection(e, 'extra')}>Activities</a></li>
         </ul>
       </div>
     </nav>

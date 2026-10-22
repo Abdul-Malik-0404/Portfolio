@@ -64,7 +64,7 @@ export default function Extra() {
             key={item.id} 
             variants={itemVariants} 
             className="glass-card hover-glow interactive"
-            style={{ cursor: 'none' }}
+            style={{ cursor: 'pointer' }}
           >
             <motion.h3 layoutId={`extra-title-${item.id}`} style={{ marginBottom: '0.5rem', color: 'var(--accent-cyan)' }}>
               {item.title}
