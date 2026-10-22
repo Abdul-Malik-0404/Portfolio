@@ -1,9 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-import { HyprWorkspace, HyprWindow } from './HyprWindow';
+import { Maximize2 } from 'lucide-react';
+import { HyprWorkspace } from './HyprWindow';
 
 const educationData = [
   {
@@ -13,6 +11,11 @@ const educationData = [
     title: 'BSc (Hons) in Computer Science',
     institution: 'University of Westminster (UK) / IIT Sri Lanka',
     date: '2024 - Expected 2028',
+    highlights: [
+      'Specializing in Distributed Systems, Cloud-Native Engineering, and Artificial Intelligence.',
+      'Final Year Project (sfugue): Proactive Stateful Session Evacuation & E2EE Failover Benchmarking for Distributed WebRTC SFUs on Kubernetes.',
+      'Core modules: Algorithms & Data Structures, Object-Oriented Programming, Software Development Group Project, Machine Learning, Concurrent Systems.',
+    ],
     description:
       'Currently pursuing a Bachelor of Science with Honours in Computer Science. Coursework focuses on advanced software engineering, distributed systems, data structures, algorithms, and artificial intelligence.',
   },
@@ -23,6 +26,11 @@ const educationData = [
     title: 'Certificate in Machine Learning',
     institution: 'IIT Professional Development Unit (PDU)',
     date: 'Jan 2026',
+    highlights: [
+      'Supervised & Unsupervised Learning pipelines with Scikit-Learn, Pandas, and NumPy.',
+      'Feature engineering, model evaluation, hyperparameter tuning, and visualization with Matplotlib.',
+      'Applied ML model integration into Python backend microservices.',
+    ],
     description:
       'Completed a specialized certificate program in Machine Learning. Gained hands-on experience in building, training, and deploying models using industry-standard libraries and frameworks.',
   },
@@ -33,6 +41,10 @@ const educationData = [
     title: 'Foundation Certificate in Higher Education',
     institution: 'Informatics Institute of Technology, Sri Lanka',
     date: '2023 - 2024',
+    highlights: [
+      'Established core competencies in programming fundamentals, discrete mathematics, and academic research.',
+      'Transitioned directly into the BSc (Hons) Computer Science degree track.',
+    ],
     description:
       'A comprehensive foundation program that established core competencies in computing, mathematics, and academic research.',
   },
@@ -43,13 +55,96 @@ const educationData = [
     title: 'GCE Ordinary Level',
     institution: 'Nasriya Central College, Chilaw, Sri Lanka',
     date: '2023',
+    highlights: [
+      'Strong academic foundation in Mathematics, Science, Information & Communication Technology, and English.',
+    ],
     description:
       'Completed general secondary education with strong foundations in mathematics, science, and English.',
   },
 ];
 
 export default function Education() {
-  const [selectedId, setSelectedId] = useState(null);
+  const windows = educationData.map((item) => ({
+    id: item.id,
+    title: item.winTitle,
+    appClass: item.appClass,
+    renderTiled: () => (
+      <div className="edu-tile-body">
+        <div className="edu-tile-top">
+          <span className="date">{item.date}</span>
+          <span className="hypr-click-hint">
+            <Maximize2 size={11} style={{ marginRight: 4 }} />
+            expand [F]
+          </span>
+        </div>
+        <h3>{item.title}</h3>
+        <h4>{item.institution}</h4>
+        <p className="edu-tile-preview">{item.description}</p>
+      </div>
+    ),
+    renderExpanded: () => (
+      <div className="hypr-expanded-view">
+        <div className="edu-tile-top" style={{ marginBottom: '0.75rem' }}>
+          <span className="date">{item.date}</span>
+          <span className="pacman-pkg-repo">{item.appClass} // fullscreen</span>
+        </div>
+        <h2
+          style={{
+            color: 'var(--accent-cyan)',
+            fontSize: '2.1rem',
+            marginBottom: '0.4rem',
+          }}
+        >
+          {item.title}
+        </h2>
+        <h4
+          style={{
+            fontSize: '1.15rem',
+            color: '#fff',
+            marginBottom: '1.25rem',
+            borderBottom: '1px solid var(--glass-border)',
+            paddingBottom: '1rem',
+          }}
+        >
+          {item.institution}
+        </h4>
+        <p
+          style={{
+            color: 'var(--text-color)',
+            lineHeight: 1.8,
+            fontSize: '1rem',
+            marginBottom: '1.5rem',
+          }}
+        >
+          {item.description}
+        </p>
+
+        <h3
+          style={{
+            color: 'var(--accent-magenta)',
+            fontSize: '1rem',
+            marginBottom: '0.75rem',
+          }}
+        >
+          // Key Highlights &amp; Focus Areas
+        </h3>
+        <ul
+          style={{
+            paddingLeft: '1.25rem',
+            color: 'var(--text-muted)',
+            lineHeight: 1.8,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
+          }}
+        >
+          {item.highlights.map((h, i) => (
+            <li key={i}>{h}</li>
+          ))}
+        </ul>
+      </div>
+    ),
+  }));
 
   return (
     <HyprWorkspace
@@ -57,101 +152,7 @@ export default function Education() {
       wsNumber={2}
       wsName="education"
       title="Education Experience"
-      layoutType="dwindle (2x2)"
-      windowIds={educationData.map((d) => d.id)}
-    >
-      <div className="hypr-tile-grid cols-2">
-        {educationData.map((item, idx) => (
-          <HyprWindow
-            key={item.id}
-            id={item.id}
-            title={item.winTitle}
-            appClass={item.appClass}
-            workspace={2}
-            dwindleIndex={idx}
-            className="interactive"
-            onClick={() => setSelectedId(item.id)}
-          >
-            <div className="edu-tile-body">
-              <div className="edu-tile-top">
-                <span className="date">{item.date}</span>
-                <span className="hypr-click-hint">click to inspect ↗</span>
-              </div>
-              <h3>{item.title}</h3>
-              <h4>{item.institution}</h4>
-              <p className="edu-tile-preview">{item.description}</p>
-            </div>
-          </HyprWindow>
-        ))}
-      </div>
-
-      <AnimatePresence>
-        {selectedId && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="skills-modal-overlay"
-            onClick={() => setSelectedId(null)}
-            style={{ zIndex: 3000 }}
-          >
-            {educationData
-              .filter((i) => i.id === selectedId)
-              .map((item) => (
-                <motion.div
-                  key="modal"
-                  initial={{ scale: 0.92, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.92, opacity: 0 }}
-                  className="skills-modal-content interactive"
-                  onClick={(e) => e.stopPropagation()}
-                  style={{ padding: '3rem 2.5rem' }}
-                >
-                  <button
-                    className="modal-close-btn interactive"
-                    onClick={() => setSelectedId(null)}
-                  >
-                    <X size={28} />
-                  </button>
-                  <h2
-                    style={{
-                      color: 'var(--accent-cyan)',
-                      fontSize: '2rem',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
-                    {item.title}
-                  </h2>
-                  <h4
-                    style={{
-                      fontSize: '1.2rem',
-                      color: 'var(--text-color)',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
-                    {item.institution}
-                  </h4>
-                  <span
-                    style={{
-                      display: 'inline-block',
-                      color: 'var(--accent-magenta)',
-                      marginBottom: '1.5rem',
-                      borderBottom: '1px solid var(--glass-border)',
-                      paddingBottom: '1rem',
-                      width: '100%',
-                    }}
-                  >
-                    {item.date}
-                  </span>
-
-                  <div style={{ color: 'var(--text-color)', lineHeight: '1.8' }}>
-                    <p>{item.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </HyprWorkspace>
+      windows={windows}
+    />
   );
 }

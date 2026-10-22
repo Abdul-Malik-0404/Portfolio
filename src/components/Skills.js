@@ -1,11 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Package } from 'lucide-react';
-import { HyprWorkspace, HyprWindow } from './HyprWindow';
+import { Package, Maximize2 } from 'lucide-react';
+import { HyprWorkspace } from './HyprWindow';
 
-// Map skills to the projects where they are used (Proof of Work)
 const SKILL_PROJECTS = {
   Python: ['sfugue', 'Jeb', 'All-rounder'],
   TypeScript: ['sfugue', 'Zawj', 'All-rounder'],
@@ -50,7 +48,6 @@ const skillsData = [
     appClass: 'pacman',
     winTitle: 'pacman -Qs languages',
     title: 'Languages',
-    spanWide: false,
     items: [
       'Python',
       'TypeScript',
@@ -69,7 +66,6 @@ const skillsData = [
     appClass: 'btop',
     winTitle: 'btop // cloud-backend-rt',
     title: 'Cloud, Backend & Real-Time',
-    spanWide: true,
     items: [
       'WebRTC / Mediasoup',
       'FastAPI',
@@ -87,7 +83,6 @@ const skillsData = [
     appClass: 'kubectl',
     winTitle: 'kubectl get nodes --devops',
     title: 'Tools & DevOps',
-    spanWide: true,
     items: [
       'Linux (Arch)',
       'Kubernetes (KinD)',
@@ -106,7 +101,6 @@ const skillsData = [
     appClass: 'jupyter',
     winTitle: 'python3 -m data_science',
     title: 'Data Science & ML',
-    spanWide: false,
     items: ['Pandas', 'NumPy', 'Scikit-Learn', 'Matplotlib'],
   },
   {
@@ -114,7 +108,6 @@ const skillsData = [
     appClass: 'hyprctl',
     winTitle: 'hyprctl clients // core-traits',
     title: 'Engineering & Soft Skills',
-    spanWide: false,
     items: [
       'Problem Solving',
       'Critical Thinking',
@@ -128,7 +121,6 @@ const skillsData = [
 ];
 
 export default function Skills() {
-  const [selectedId, setSelectedId] = useState(null);
   const [activeProjectFilter, setActiveProjectFilter] = useState('All');
 
   const isSkillHighlighted = (item) => {
@@ -155,154 +147,115 @@ export default function Skills() {
     </div>
   );
 
+  const windows = skillsData.map((skill) => ({
+    id: skill.id,
+    title: skill.winTitle,
+    appClass: skill.appClass,
+    renderTiled: () => (
+      <div className="skill-tile-inner">
+        <div className="skill-tile-header">
+          <h3>{skill.title}</h3>
+          <span className="hypr-click-hint">
+            <Maximize2 size={11} style={{ marginRight: 4 }} />
+            pacman -Qi ({skill.items.length})
+          </span>
+        </div>
+
+        <div className="skill-pill-cloud">
+          {skill.items.map((item) => {
+            const highlighted = isSkillHighlighted(item);
+            const deps = SKILL_PROJECTS[item];
+            return (
+              <span
+                key={item}
+                className={`hypr-skill-pill ${
+                  highlighted ? 'highlighted' : 'dimmed'
+                } ${
+                  activeProjectFilter !== 'All' && highlighted
+                    ? 'filter-match'
+                    : ''
+                }`}
+              >
+                <span className="pill-dot" />
+                <span>{item}</span>
+                {deps && deps.length > 0 && (
+                  <span className="pill-dep-tag">{deps[0]}</span>
+                )}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    ),
+    renderExpanded: () => (
+      <div className="hypr-expanded-view">
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            marginBottom: '0.4rem',
+          }}
+        >
+          <Package size={24} className="icon-cyan" />
+          <h2
+            style={{
+              color: 'var(--accent-cyan)',
+              fontSize: '1.9rem',
+              margin: 0,
+            }}
+          >
+            {skill.title}
+          </h2>
+        </div>
+        <p
+          style={{
+            color: 'var(--text-muted)',
+            fontSize: '0.85rem',
+            borderBottom: '1px solid var(--glass-border)',
+            paddingBottom: '0.9rem',
+            marginBottom: '1.25rem',
+          }}
+        >
+          $ {skill.winTitle} — showing installed capabilities &amp; project
+          dependencies
+        </p>
+
+        <div className="pacman-inspector-grid">
+          {skill.items.map((item) => {
+            const usedIn = SKILL_PROJECTS[item] || ['Core Engineering Workflow'];
+            return (
+              <div key={item} className="pacman-pkg-card">
+                <div className="pacman-pkg-top">
+                  <span className="pacman-pkg-name">{item}</span>
+                  <span className="pacman-pkg-repo">extra/installed</span>
+                </div>
+                <div className="pacman-pkg-deps">
+                  <span className="deps-label">Required By (Used In):</span>
+                  <div className="deps-chips">
+                    {usedIn.map((dep) => (
+                      <span key={dep} className="deps-chip">
+                        {dep}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ),
+  }));
+
   return (
     <HyprWorkspace
       id="skills"
       wsNumber={3}
       wsName="skills"
       title="Technical Expertise"
-      layoutType="dwindle (matrix)"
-      windowIds={skillsData.map((s) => s.id)}
       headerExtra={filterBar}
-    >
-      <div className="hypr-skills-bento">
-        {skillsData.map((skill, idx) => (
-          <HyprWindow
-            key={skill.id}
-            id={skill.id}
-            title={skill.winTitle}
-            appClass={skill.appClass}
-            workspace={3}
-            dwindleIndex={idx}
-            className={`skill-tile-window interactive ${
-              skill.spanWide ? 'span-wide' : ''
-            }`}
-            onClick={() => setSelectedId(skill.id)}
-          >
-            <div className="skill-tile-inner">
-              <div className="skill-tile-header">
-                <h3>{skill.title}</h3>
-                <span className="hypr-click-hint">
-                  pacman -Qi ({skill.items.length}) ↗
-                </span>
-              </div>
-
-              <div className="skill-pill-cloud">
-                {skill.items.map((item) => {
-                  const highlighted = isSkillHighlighted(item);
-                  const deps = SKILL_PROJECTS[item];
-                  return (
-                    <span
-                      key={item}
-                      className={`hypr-skill-pill ${
-                        highlighted ? 'highlighted' : 'dimmed'
-                      } ${
-                        activeProjectFilter !== 'All' && highlighted
-                          ? 'filter-match'
-                          : ''
-                      }`}
-                    >
-                      <span className="pill-dot" />
-                      <span>{item}</span>
-                      {deps && deps.length > 0 && (
-                        <span className="pill-dep-tag">{deps[0]}</span>
-                      )}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          </HyprWindow>
-        ))}
-      </div>
-
-      <AnimatePresence>
-        {selectedId && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="skills-modal-overlay"
-            onClick={() => setSelectedId(null)}
-          >
-            {skillsData
-              .filter((s) => s.id === selectedId)
-              .map((skill) => (
-                <motion.div
-                  key="modal"
-                  initial={{ scale: 0.92, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.92, opacity: 0 }}
-                  className="skills-modal-content interactive"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button
-                    className="modal-close-btn interactive"
-                    onClick={() => setSelectedId(null)}
-                  >
-                    <X size={28} />
-                  </button>
-
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.75rem',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
-                    <Package size={24} className="icon-cyan" />
-                    <h2
-                      style={{
-                        color: 'var(--accent-cyan)',
-                        fontSize: '2rem',
-                        margin: 0,
-                      }}
-                    >
-                      {skill.title}
-                    </h2>
-                  </div>
-                  <p
-                    style={{
-                      color: 'var(--text-muted)',
-                      fontSize: '0.85rem',
-                      borderBottom: '1px solid var(--glass-border)',
-                      paddingBottom: '1rem',
-                      marginBottom: '1.5rem',
-                    }}
-                  >
-                    $ {skill.winTitle} — showing installed capabilities &amp;
-                    project dependencies
-                  </p>
-
-                  <div className="pacman-inspector-grid">
-                    {skill.items.map((item) => {
-                      const usedIn = SKILL_PROJECTS[item] || ['Core Workflow'];
-                      return (
-                        <div key={item} className="pacman-pkg-card">
-                          <div className="pacman-pkg-top">
-                            <span className="pacman-pkg-name">{item}</span>
-                            <span className="pacman-pkg-repo">extra/installed</span>
-                          </div>
-                          <div className="pacman-pkg-deps">
-                            <span className="deps-label">Required By:</span>
-                            <div className="deps-chips">
-                              {usedIn.map((dep) => (
-                                <span key={dep} className="deps-chip">
-                                  {dep}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </HyprWorkspace>
+      windows={windows}
+    />
   );
 }

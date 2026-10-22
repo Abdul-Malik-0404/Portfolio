@@ -1233,28 +1233,74 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 /* ==========================================================================
-   HYPRLAND TILING WINDOW MANAGER ENGINE
+   HYPRLAND FULL-VIEWPORT COMPOSITOR & DYNAMIC BSP/DWINDLE TILING ENGINE
    ========================================================================== */
 
-.hypr-workspace-section {
-  padding-top: 2.75rem;
-  padding-bottom: 2.75rem;
+.hypr-compositor-viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
-#home.hypr-workspace-section {
-  padding-top: 5.5rem;
+.navbar.hypr-top-waybar {
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 0.5rem 0 0.35rem;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.hypr-top-waybar .nav-content {
+  max-width: 100%;
+  padding: 0 0.9rem;
+}
+
+.hypr-compositor-stage {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.15rem 0.9rem 2.9rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.hypr-workspace-slide-frame {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hypr-monitor-workspace {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 /* Workspace Monitor Header Strip */
 .hypr-ws-bar {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 0.9rem;
-  padding: 0.5rem 0.85rem;
-  background: rgba(16, 18, 22, 0.78);
+  gap: 0.6rem;
+  padding: 0.38rem 0.75rem;
+  background: rgba(16, 18, 22, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 3px solid var(--accent-cyan);
   border-radius: 5px;
@@ -1264,46 +1310,46 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-ws-bar-left {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
 }
 
 .hypr-ws-pill {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #000;
   background: var(--accent-cyan);
-  padding: 0.18rem 0.5rem;
+  padding: 0.14rem 0.45rem;
   border-radius: 3px;
   letter-spacing: 0.5px;
 }
 
 .hypr-ws-title {
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #fff;
   margin: 0;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
 }
 
 .hypr-ws-layout-badge {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--accent-magenta);
   background: rgba(255, 0, 170, 0.08);
   border: 1px solid rgba(255, 0, 170, 0.25);
-  padding: 0.15rem 0.5rem;
+  padding: 0.12rem 0.45rem;
   border-radius: 3px;
 }
 
 .hypr-ws-bar-right {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
 }
 
 .hypr-ws-hint {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
 }
 
@@ -1315,9 +1361,9 @@ a, button, [role="button"], .interactive, .hover-glow {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.22rem 0.6rem;
+  padding: 0.18rem 0.55rem;
   font-family: inherit;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: #fff;
   background: rgba(255, 0, 170, 0.18);
@@ -1332,13 +1378,97 @@ a, button, [role="button"], .interactive, .hover-glow {
   color: #000;
 }
 
+/* Main Monitor Tiling Area (fills 100% remaining viewport height) */
+.hypr-monitor-canvas {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+}
+
+/* Dynamic BSP / Dwindle Layout Containers */
+.hypr-bsp-single {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+}
+
+.hypr-bsp-split {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.hypr-bsp-split.resizing {
+  user-select: none;
+}
+
+.hypr-bsp-pane {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  transition: width 0.12s ease;
+}
+
+.hypr-bsp-col {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: width 0.12s ease;
+}
+
+.hypr-bsp-row-item {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+}
+
+.hypr-bsp-matrix {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hypr-bsp-matrix-row {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.hypr-bsp-matrix-cell {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+}
+
 .hypr-empty-workspace {
+  flex: 1;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 4rem 2rem;
+  padding: 2rem;
   background: rgba(15, 15, 18, 0.65);
   border: 1px dashed rgba(0, 255, 238, 0.3);
   border-radius: 6px;
@@ -1346,19 +1476,53 @@ a, button, [role="button"], .interactive, .hover-glow {
   text-align: center;
 }
 
+/* Interactive Vertical Split Handle */
+.hypr-split-divider {
+  width: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: col-resize;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.hypr-split-grip {
+  width: 3px;
+  height: 48px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+}
+
+.hypr-split-divider:hover .hypr-split-grip,
+.hypr-split-divider.active .hypr-split-grip {
+  height: 85%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
 /* HyprWindow Container & Borders (col.active_border / col.inactive_border) */
 .hypr-window {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  background: rgba(15, 16, 20, 0.86);
+  background: rgba(14, 15, 19, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 6px;
   border: 2px solid rgba(90, 95, 110, 0.35);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
   overflow: hidden;
   position: relative;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hypr-window.interactive-tile {
+  cursor: pointer;
 }
 
 /* Active Window Border: Hyprland 45deg Cyan -> Magenta glow */
@@ -1371,15 +1535,23 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .hypr-window.unfocused {
-  opacity: 0.92;
+  opacity: 0.94;
 }
 
-/* Floating Mode (detached & draggable) */
+/* Detached Floating Layer & Floating Window */
+.hypr-floating-layer-item {
+  position: fixed;
+  width: min(520px, 90vw);
+  height: min(360px, 72vh);
+  z-index: 300;
+  display: flex;
+}
+
 .hypr-window.mode-floating {
   border-color: var(--accent-magenta);
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.9),
-    0 0 28px rgba(255, 0, 170, 0.35);
+    0 28px 65px rgba(0, 0, 0, 0.92),
+    0 0 30px rgba(255, 0, 170, 0.4);
   cursor: grab;
 }
 
@@ -1387,22 +1559,21 @@ a, button, [role="button"], .interactive, .hover-glow {
   cursor: grabbing;
 }
 
-/* Monocle Fullscreen Mode (expands to 100% of workspace) */
+/* Monocle Fullscreen Mode (expands in-place to 100% of workspace) */
 .hypr-window.mode-fullscreen {
-  flex: 1 1 100% !important;
-  width: 100% !important;
-  min-height: 420px;
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 35px rgba(0, 255, 238, 0.28);
+  box-shadow: 0 0 35px rgba(0, 255, 238, 0.25);
+  cursor: default;
 }
 
 /* Window Titlebar */
 .hypr-window-titlebar {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.42rem 0.75rem;
+  padding: 0.38rem 0.75rem;
   background: rgba(255, 255, 255, 0.035);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   user-select: none;
@@ -1411,10 +1582,10 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-window.focused .hypr-window-titlebar {
   background: linear-gradient(
     90deg,
-    rgba(0, 255, 238, 0.1) 0%,
-    rgba(255, 0, 170, 0.06) 100%
+    rgba(0, 255, 238, 0.11) 0%,
+    rgba(255, 0, 170, 0.07) 100%
   );
-  border-bottom-color: rgba(0, 255, 238, 0.22);
+  border-bottom-color: rgba(0, 255, 238, 0.24);
 }
 
 .hypr-win-meta {
@@ -1440,24 +1611,24 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .hypr-win-class {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
   color: var(--accent-cyan);
   background: rgba(0, 255, 238, 0.1);
   border: 1px solid rgba(0, 255, 238, 0.22);
-  padding: 0.08rem 0.4rem;
+  padding: 0.06rem 0.38rem;
   border-radius: 3px;
   text-transform: lowercase;
   flex-shrink: 0;
 }
 
 .hypr-win-sep {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.25);
 }
 
 .hypr-win-title {
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
@@ -1469,9 +1640,9 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .hypr-win-mode-tag {
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  padding: 0.08rem 0.38rem;
+  padding: 0.06rem 0.38rem;
   border-radius: 3px;
   letter-spacing: 0.4px;
   flex-shrink: 0;
@@ -1498,9 +1669,9 @@ a, button, [role="button"], .interactive, .hover-glow {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.18rem 0.42rem;
+  padding: 0.16rem 0.42rem;
   font-family: inherit;
-  font-size: 0.66rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -1514,6 +1685,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   color: #000;
   background: var(--accent-cyan);
   border-color: var(--accent-cyan);
+  font-weight: 600;
 }
 
 .hypr-win-btn.close:hover {
@@ -1522,106 +1694,81 @@ a, button, [role="button"], .interactive, .hover-glow {
   border-color: #ff4d6d;
 }
 
+/* Window Client Body */
 .hypr-window-body {
-  padding: 1.35rem 1.4rem;
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
+}
+
+.hypr-window-body.tiled-fit-body {
+  padding: 1.15rem 1.3rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.hypr-window-body.expanded-scroll-body {
+  padding: 1.75rem 2.2rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.hypr-expanded-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.expanded-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 /* ==========================================================================
-   WORKSPACE 01: 3-WINDOW DWINDLE TILED DESKTOP & SPLIT DIVIDER
+   WORKSPACE 01: HERO MASTER + FASTFETCH + SFUGUE TELEMETRY
    ========================================================================== */
 
-.hypr-dwindle-desktop {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  min-height: 460px;
-  width: 100%;
-}
-
-.hypr-dwindle-desktop.resizing {
-  user-select: none;
-}
-
-.hypr-dwindle-master {
+.hero-tiled-inner {
   display: flex;
   flex-direction: column;
-  transition: width 0.15s ease;
-}
-
-.hypr-dwindle-master .hypr-window {
-  flex: 1;
-}
-
-.hypr-dwindle-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: width 0.15s ease;
-}
-
-.hypr-dwindle-stack .hypr-window {
-  flex: 1;
-}
-
-/* Interactive Vertical Split Handle */
-.hypr-split-divider {
-  width: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: col-resize;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.hypr-split-grip {
-  width: 3px;
-  height: 48px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.14);
-  transition: all 0.2s ease;
-}
-
-.hypr-split-divider:hover .hypr-split-grip,
-.hypr-split-divider.active .hypr-split-grip {
-  height: 85%;
-  background: var(--accent-cyan);
-  box-shadow: 0 0 12px var(--accent-cyan);
+  justify-content: space-between;
+  height: 100%;
+  gap: 1rem;
 }
 
 .hero-status-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--accent-cyan);
   background: rgba(0, 255, 238, 0.07);
   border: 1px solid rgba(0, 255, 238, 0.22);
-  padding: 0.28rem 0.65rem;
+  padding: 0.24rem 0.6rem;
   border-radius: 4px;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.85rem;
   width: fit-content;
 }
 
-.hero-master-window .hero-title {
-  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
-  margin-bottom: 0.4rem;
+.hero-tiled-inner .hero-title {
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  margin-bottom: 0.35rem;
 }
 
-.hero-master-window .subtitle {
-  font-size: 1.15rem;
-  margin-bottom: 1.1rem;
+.hero-tiled-inner .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 0.9rem;
 }
 
-.hero-master-window .summary {
-  font-size: 0.96rem;
-  line-height: 1.7;
-  margin-bottom: 1.75rem;
-  flex-grow: 1;
+.hero-tiled-inner .summary {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin-bottom: 0;
+  max-width: 640px;
 }
 
 .hero-bottom-bar {
@@ -1630,18 +1777,17 @@ a, button, [role="button"], .interactive, .hover-glow {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: auto;
-  padding-top: 1rem;
+  padding-top: 0.85rem;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .hypr-inspect-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.55rem 0.95rem;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
   font-family: inherit;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent-cyan);
   background: rgba(0, 255, 238, 0.08);
@@ -1657,19 +1803,20 @@ a, button, [role="button"], .interactive, .hover-glow {
   box-shadow: 0 0 15px rgba(0, 255, 238, 0.35);
 }
 
-/* Fastfetch Tile in Hero Stack */
+/* Fastfetch Tile */
 .fastfetch-grid {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.2rem;
   font-size: 0.78rem;
-  line-height: 1.55;
+  line-height: 1.5;
+  height: 100%;
 }
 
 .fastfetch-ascii {
   color: var(--accent-cyan);
   font-family: inherit;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   line-height: 1.2;
   margin: 0;
   user-select: none;
@@ -1683,13 +1830,13 @@ a, button, [role="button"], .interactive, .hover-glow {
 
 .ff-header {
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
 }
 
 .ff-divider {
   color: var(--text-muted);
   opacity: 0.5;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
 }
 
 .ff-key {
@@ -1700,22 +1847,22 @@ a, button, [role="button"], .interactive, .hover-glow {
 .ff-swatches {
   display: flex;
   gap: 0.4rem;
-  margin-top: 0.55rem;
+  margin-top: 0.45rem;
 }
 
 .ff-swatches span {
   width: 16px;
-  height: 8px;
+  height: 7px;
   border-radius: 2px;
   display: inline-block;
 }
 
-/* Live sfugue Telemetry Simulator Tile in Hero Stack */
+/* Live sfugue Telemetry Simulator Tile */
 .sfugue-mini-sim {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.85rem;
+  gap: 0.65rem;
   height: 100%;
 }
 
@@ -1731,7 +1878,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-color);
 }
 
@@ -1740,9 +1887,9 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .sim-state-pill {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
-  padding: 0.18rem 0.5rem;
+  padding: 0.15rem 0.48rem;
   border-radius: 3px;
   letter-spacing: 0.4px;
 }
@@ -1768,27 +1915,27 @@ a, button, [role="button"], .interactive, .hover-glow {
 .sim-metrics-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.65rem;
+  gap: 0.6rem;
 }
 
 .sim-metric-box {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
-  padding: 0.5rem 0.7rem;
+  padding: 0.45rem 0.65rem;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.12rem;
 }
 
 .sim-metric-label {
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   color: var(--text-muted);
   letter-spacing: 0.5px;
 }
 
 .sim-metric-val {
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #fff;
 }
@@ -1802,7 +1949,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .sim-caption {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
 }
 
@@ -1810,9 +1957,9 @@ a, button, [role="button"], .interactive, .hover-glow {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.3rem 0.65rem;
+  padding: 0.28rem 0.6rem;
   font-family: inherit;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #fff;
   background: rgba(255, 0, 170, 0.15);
@@ -1829,31 +1976,9 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 /* ==========================================================================
-   DYNAMIC REFLOWING DWINDLE GRIDS (EDUCATION, SKILLS, PROJECTS, BLOG, EXTRA)
+   TILE INNER CONTENT STYLES (EDUCATION, SKILLS, PROJECTS, BLOG, EXTRA)
    ========================================================================== */
 
-.hypr-tile-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  width: 100%;
-}
-
-.hypr-tile-grid.cols-2 > .hypr-window {
-  flex: 1 1 calc(50% - 12px);
-  min-width: 300px;
-}
-
-.hypr-tile-grid.cols-3 > .hypr-window {
-  flex: 1 1 calc(33.333% - 12px);
-  min-width: 300px;
-}
-
-.hypr-tile-grid.cols-3 > .hypr-window.featured-span {
-  flex: 2 1 calc(66.666% - 12px);
-}
-
-/* Education & Activity Tile Content */
 .edu-tile-body,
 .extra-tile-body {
   display: flex;
@@ -1867,56 +1992,41 @@ a, button, [role="button"], .interactive, .hover-glow {
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .edu-tile-body h3 {
-  font-size: 1.18rem;
+  font-size: 1.15rem;
   color: #fff;
   margin: 0;
 }
 
 .edu-tile-body h4 {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--accent-cyan);
   font-weight: 500;
   margin: 0;
 }
 
 .edu-tile-preview {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-top: 0.4rem;
+  line-height: 1.55;
+  margin-top: 0.35rem;
 }
 
 .hypr-click-hint {
-  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
   color: var(--text-muted);
-  opacity: 0.75;
-}
-
-/* Skills Bento & Pill Cloud */
-.hypr-skills-bento {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  width: 100%;
-}
-
-.hypr-skills-bento > .hypr-window {
-  flex: 1 1 calc(33.333% - 12px);
-  min-width: 280px;
-}
-
-.hypr-skills-bento > .hypr-window.span-wide {
-  flex: 1.6 1 calc(50% - 12px);
+  opacity: 0.8;
 }
 
 .skill-tile-inner {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.75rem;
   height: 100%;
 }
 
@@ -1928,7 +2038,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .skill-tile-header h3 {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--accent-cyan);
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -1938,19 +2048,19 @@ a, button, [role="button"], .interactive, .hover-glow {
 .skill-pill-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.45rem;
   align-items: center;
 }
 
 .hypr-skill-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.34rem 0.68rem;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
   background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(0, 255, 238, 0.2);
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   color: #fff;
   transition: all 0.2s ease;
 }
@@ -1963,10 +2073,10 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .hypr-skill-pill .pill-dep-tag {
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   color: var(--accent-magenta);
   background: rgba(255, 0, 170, 0.12);
-  padding: 0.06rem 0.35rem;
+  padding: 0.04rem 0.32rem;
   border-radius: 3px;
 }
 
@@ -1984,20 +2094,20 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-skill-filter-bar {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.32rem;
   flex-wrap: wrap;
 }
 
 .filter-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
-  margin-right: 0.2rem;
+  margin-right: 0.15rem;
 }
 
 .hypr-filter-chip {
   font-family: inherit;
-  font-size: 0.68rem;
-  padding: 0.16rem 0.5rem;
+  font-size: 0.66rem;
+  padding: 0.14rem 0.48rem;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2014,11 +2124,11 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-weight: 600;
 }
 
-/* Pacman -Qi Modal Package Cards */
+/* Pacman -Qi Inspector Cards */
 .pacman-inspector-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 0.9rem;
+  gap: 0.85rem;
 }
 
 .pacman-pkg-card {
@@ -2042,11 +2152,11 @@ a, button, [role="button"], .interactive, .hover-glow {
 .pacman-pkg-name {
   font-weight: 700;
   color: #fff;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .pacman-pkg-repo {
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   color: var(--accent-cyan);
   background: rgba(0, 255, 238, 0.1);
   padding: 0.1rem 0.38rem;
@@ -2061,7 +2171,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .deps-label {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   color: var(--text-muted);
 }
 
@@ -2072,7 +2182,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .deps-chip {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   color: var(--accent-magenta);
   background: rgba(255, 0, 170, 0.1);
   border: 1px solid rgba(255, 0, 170, 0.25);
@@ -2084,7 +2194,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 .project-tile-body {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.5rem;
   height: 100%;
 }
 
@@ -2096,21 +2206,21 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .project-tile-year {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: #000;
   background: var(--accent-cyan);
-  padding: 0.14rem 0.5rem;
+  padding: 0.12rem 0.45rem;
   border-radius: 3px;
 }
 
 .project-tile-type {
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   color: var(--accent-magenta);
 }
 
 .project-tile-title {
-  font-size: 1.3rem;
+  font-size: 1.18rem;
   color: #fff;
   margin: 0;
   display: flex;
@@ -2118,38 +2228,31 @@ a, button, [role="button"], .interactive, .hover-glow {
   justify-content: space-between;
 }
 
-.tile-arrow {
-  color: var(--accent-cyan);
-  opacity: 0.7;
-  transition: transform 0.2s ease;
-}
-
-.hypr-window:hover .tile-arrow {
-  transform: translate(2px, -2px);
-  opacity: 1;
-}
-
 .project-tile-desc {
-  font-size: 0.88rem;
+  font-size: 0.83rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.5;
   flex-grow: 1;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-tile-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.4rem;
+  gap: 0.35rem;
+  margin-top: auto;
 }
 
 .hypr-mini-tag {
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   color: var(--accent-cyan);
   background: rgba(0, 255, 238, 0.08);
   border: 1px solid rgba(0, 255, 238, 0.2);
-  padding: 0.15rem 0.5rem;
+  padding: 0.12rem 0.42rem;
   border-radius: 3px;
 }
 
@@ -2159,40 +2262,61 @@ a, button, [role="button"], .interactive, .hover-glow {
   background: rgba(255, 255, 255, 0.04);
 }
 
+/* Compact Bottom Dock Positioning for HyprBinds & CLI Triggers */
+.hypr-hotkeys-btn {
+  bottom: 0.45rem;
+  left: 0.9rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.76rem;
+}
+
+.terminal-floating-btn {
+  bottom: 0.45rem;
+  right: 0.9rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.76rem;
+}
+
 /* Hyprland IPC Toast Notification */
 .hypr-notify-toast {
   position: fixed;
-  top: 4.2rem;
-  right: 1.5rem;
+  top: 3.6rem;
+  right: 1.2rem;
   z-index: 2800;
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.55rem 0.95rem;
-  background: rgba(12, 14, 18, 0.94);
+  padding: 0.5rem 0.9rem;
+  background: rgba(12, 14, 18, 0.95);
   border: 1px solid var(--accent-cyan);
   border-left: 3px solid var(--accent-magenta);
   border-radius: 5px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 238, 0.2);
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   color: #fff;
   pointer-events: none;
 }
 
 @media (max-width: 920px) {
-  .hypr-dwindle-desktop {
-    flex-direction: column;
-    gap: 12px;
+  .hypr-compositor-viewport {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
   }
-  .hypr-dwindle-master,
-  .hypr-dwindle-stack {
+  .hypr-bsp-split,
+  .hypr-bsp-matrix-row,
+  .expanded-two-col {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+  .hypr-bsp-pane,
+  .hypr-bsp-col {
     width: 100% !important;
   }
-  .hypr-split-divider {
-    display: none;
-  }
+  .hypr-split-divider,
   .hypr-ws-hint {
     display: none;
   }
 }
+
 

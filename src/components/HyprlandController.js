@@ -3,21 +3,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Keyboard, X, Monitor, Sparkles, Terminal } from 'lucide-react';
-import { useHyprland } from './HyprlandContext';
-
-const WORKSPACES = [
-  { id: 1, name: 'About', target: 'home' },
-  { id: 2, name: 'Education', target: 'education' },
-  { id: 3, name: 'Skills', target: 'skills' },
-  { id: 4, name: 'Projects', target: 'projects' },
-  { id: 5, name: 'Blog', target: 'blog' },
-  { id: 6, name: 'Activities', target: 'extra' },
-];
+import { useHyprland, WORKSPACE_LIST } from './HyprlandContext';
 
 export default function HyprlandController() {
-  const [activeWs, setActiveWs] = useState(1);
   const [showHelp, setShowHelp] = useState(false);
-  const { notification } = useHyprland();
+  const { activeWorkspace, switchWorkspace, notification } = useHyprland();
 
   // Keyboard shortcut listener
   useEffect(() => {
@@ -36,49 +26,24 @@ export default function HyprlandController() {
       }
 
       const num = parseInt(e.key, 10);
-      if (num >= 1 && num <= WORKSPACES.length) {
-        const ws = WORKSPACES.find((w) => w.id === num);
-        if (ws) {
-          e.preventDefault();
-          switchWorkspace(ws.id, ws.target);
-        }
+      if (num >= 1 && num <= WORKSPACE_LIST.length) {
+        e.preventDefault();
+        switchWorkspace(num);
+        return;
+      }
+
+      if (e.key === 'ArrowRight' && activeWorkspace < WORKSPACE_LIST.length) {
+        e.preventDefault();
+        switchWorkspace(activeWorkspace + 1);
+      } else if (e.key === 'ArrowLeft' && activeWorkspace > 1) {
+        e.preventDefault();
+        switchWorkspace(activeWorkspace - 1);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [showHelp]);
-
-  // Track active section on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
-      for (let i = WORKSPACES.length - 1; i >= 0; i--) {
-        const el = document.getElementById(WORKSPACES[i].target);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveWs(WORKSPACES[i].id);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const switchWorkspace = (wsId, targetId) => {
-    setActiveWs(wsId);
-    const el = document.getElementById(targetId);
-    if (el) {
-      if (window.location.hash) {
-        window.history.replaceState(null, '', window.location.pathname);
-      }
-      window.scrollTo({
-        top: el.offsetTop - 80,
-        behavior: 'smooth',
-      });
-    }
-  };
+  }, [showHelp, activeWorkspace, switchWorkspace]);
 
   return (
     <>
@@ -153,29 +118,30 @@ export default function HyprlandController() {
 
               <div className="hypr-shortcuts-grid">
                 <div className="shortcut-row">
-                  <span className="key-combo">Hover Window</span>
+                  <span className="key-combo">Scroll / 1..6 / ← →</span>
                   <span className="shortcut-desc">
-                    Focus window automatically (<code>follow_mouse = 1</code>)
+                    Slide Horizontally Between Workspaces (<code>WS:01</code> ..{' '}
+                    <code>WS:06</code>)
                   </span>
                 </div>
                 <div className="shortcut-row">
-                  <span className="key-combo">V (or Float btn)</span>
+                  <span className="key-combo">Click Window / F</span>
                   <span className="shortcut-desc">
-                    Toggle Focused Window between <b>Tiled</b> &amp;{' '}
-                    <b>Draggable Floating</b> mode
+                    Expand Window In-Place to <b>Full-Screen Monocle</b> View
                   </span>
                 </div>
                 <div className="shortcut-row">
-                  <span className="key-combo">F (or Max btn)</span>
+                  <span className="key-combo">V (or Float / Tile Here)</span>
                   <span className="shortcut-desc">
-                    Toggle <b>Monocle Fullscreen</b> for the focused window
+                    Detach Window to <b>Float &amp; Drag</b>, or Snap into Tile
+                    Slot where dropped
                   </span>
                 </div>
                 <div className="shortcut-row">
                   <span className="key-combo">Q (or × btn)</span>
                   <span className="shortcut-desc">
-                    Kill focused window (sibling tiles dynamically expand to fill
-                    gap)
+                    Kill focused window (remaining tiles dynamically expand to
+                    fill 100% of screen)
                   </span>
                 </div>
                 <div className="shortcut-row">
@@ -186,16 +152,9 @@ export default function HyprlandController() {
                   </span>
                 </div>
                 <div className="shortcut-row">
-                  <span className="key-combo">Drag Divider</span>
+                  <span className="key-combo">Drag Split Bar</span>
                   <span className="shortcut-desc">
-                    Resize Master / Stack split ratio in Workspace 01
-                  </span>
-                </div>
-                <div className="shortcut-row">
-                  <span className="key-combo">1 .. 6</span>
-                  <span className="shortcut-desc">
-                    Switch Workspace (About, Edu, Skills, Projects, Blog,
-                    Activities)
+                    Resize Master / Stack split ratio dynamically
                   </span>
                 </div>
                 <div className="shortcut-row">
@@ -218,8 +177,8 @@ export default function HyprlandController() {
               >
                 <Sparkles size={16} className="icon-magenta" />
                 <span>
-                  Tip: Try closing or floating a window—watch the remaining tiles
-                  reflow like real Hyprland!
+                  Tip: Float a window, drag it to another side of the screen, and
+                  click <b>Tile Here</b> to swap its tiled slot!
                 </span>
               </div>
             </motion.div>
