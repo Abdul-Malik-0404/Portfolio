@@ -1,7 +1,18 @@
 export default function Footer() {
   return (
-    <footer style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)', fontSize: '0.9rem', borderTop: '1px solid var(--glass-border)', marginTop: '4rem' }}>
-      <p>&copy; 2026 Abdul Malik. Designed and Built with Passion.</p>
+    <footer className="hypr-footer">
+      <p>
+        &copy; 2026 Abdul Malik &bull; Inspired by{' '}
+        <a
+          href="https://hyprland.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hypr-footer-link"
+        >
+          Hyprland
+        </a>{' '}
+        Dynamic Tiling Wayland Compositor
+      </p>
     </footer>
   );
 }

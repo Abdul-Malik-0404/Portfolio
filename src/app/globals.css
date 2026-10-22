@@ -897,24 +897,24 @@ a, button, [role="button"], .interactive, .hover-glow {
 /* Floating Terminal Trigger */
 .terminal-floating-btn {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 0.38rem;
+  right: 0.9rem;
   z-index: 1500;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  background: rgba(13, 13, 13, 0.85);
+  gap: 0.45rem;
+  background: rgba(13, 13, 13, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--accent-cyan);
   color: var(--accent-cyan);
-  padding: 0.6rem 1.2rem;
+  padding: 0.32rem 0.8rem;
   border-radius: 4px;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.76rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(0, 255, 238, 0.2);
+  box-shadow: 0 0 12px rgba(0, 255, 238, 0.18);
   transition: all 0.2s ease;
 }
 
@@ -1170,24 +1170,24 @@ a, button, [role="button"], .interactive, .hover-glow {
 /* Hyprland Controller & Cheatsheet Styles */
 .hypr-hotkeys-btn {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
+  bottom: 0.38rem;
+  left: 0.9rem;
   z-index: 1500;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  background: rgba(13, 13, 13, 0.85);
+  gap: 0.45rem;
+  background: rgba(13, 13, 13, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-color);
   color: var(--text-muted);
-  padding: 0.6rem 1.2rem;
+  padding: 0.32rem 0.8rem;
   border-radius: 4px;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.76rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
   transition: all 0.2s ease;
 }
 
@@ -1265,11 +1265,48 @@ a, button, [role="button"], .interactive, .hover-glow {
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 0.15rem 0.9rem 2.9rem;
+  padding: 0.15rem 0.9rem 0.35rem;
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.hypr-footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--glass-border);
+  margin-top: 4rem;
+}
+
+.hypr-footer p {
+  margin: 0;
+}
+
+.hypr-footer-link {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0, 255, 238, 0.45);
+  transition: all 0.2s ease;
+}
+
+.hypr-footer-link:hover {
+  color: #fff;
+  border-bottom-color: var(--accent-magenta);
+  text-shadow: 0 0 10px rgba(0, 255, 238, 0.6);
+}
+
+.hypr-compositor-viewport .hypr-footer {
+  flex-shrink: 0;
+  margin-top: 0;
+  padding: 0.52rem 11rem;
+  font-size: 0.72rem;
+  background: rgba(10, 11, 14, 0.78);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 1200;
 }
 
 .hypr-workspace-slide-frame {
@@ -2262,21 +2299,6 @@ a, button, [role="button"], .interactive, .hover-glow {
   background: rgba(255, 255, 255, 0.04);
 }
 
-/* Compact Bottom Dock Positioning for HyprBinds & CLI Triggers */
-.hypr-hotkeys-btn {
-  bottom: 0.45rem;
-  left: 0.9rem;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.76rem;
-}
-
-.terminal-floating-btn {
-  bottom: 0.45rem;
-  right: 0.9rem;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.76rem;
-}
-
 /* Hyprland IPC Toast Notification */
 .hypr-notify-toast {
   position: fixed;
@@ -2302,6 +2324,9 @@ a, button, [role="button"], .interactive, .hover-glow {
     height: auto;
     min-height: 100vh;
     overflow-y: auto;
+  }
+  .hypr-compositor-viewport .hypr-footer {
+    padding: 0.65rem 1rem 3.2rem;
   }
   .hypr-bsp-split,
   .hypr-bsp-matrix-row,
