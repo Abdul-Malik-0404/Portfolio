@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { Home } from 'lucide-react';
 
+import WaybarHUD from './WaybarHUD';
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -25,7 +27,8 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-content">
-        <a href="#" className="logo"><Home size={28} /></a>
+        <a href="#" className="logo"><Home size={24} /></a>
+        <WaybarHUD />
         <ul className="nav-links">
           <li><a href="#about" onClick={(e) => scrollToSection(e, 'home')}>About</a></li>
           <li><a href="#education" onClick={(e) => scrollToSection(e, 'education')}>Education</a></li>
