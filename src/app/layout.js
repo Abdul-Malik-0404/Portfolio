@@ -1,9 +1,11 @@
 import './globals.css';
-import { Inter, Outfit } from 'next/font/google';
+import { JetBrains_Mono } from 'next/font/google';
 import CustomCursor from '../components/CustomCursor';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ['latin'], 
+  variable: '--font-jetbrains-mono' 
+});
 
 export const metadata = {
   title: 'Abdul Malik | Portfolio',
@@ -13,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${outfit.variable}`}>
+      <body className={jetbrainsMono.variable}>
         <CustomCursor />
         {children}
       </body>
