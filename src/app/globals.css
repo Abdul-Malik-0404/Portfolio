@@ -254,9 +254,35 @@ a:hover {
   100% { transform: scale(0.9); opacity: 0.7; }
 }
 
+.mod-focused-win {
+  max-width: 230px;
+  overflow: hidden;
+  border-color: rgba(0, 255, 238, 0.22);
+  background: rgba(0, 255, 238, 0.05);
+}
+
+.mod-win-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mod-retile {
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 0, 170, 0.16);
+  border-color: var(--accent-magenta);
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.mod-retile:hover {
+  background: var(--accent-magenta);
+  color: #000;
+}
+
 @media (max-width: 1220px) {
-  .waybar-module.mod-os,
-  .waybar-module.mod-status {
+  .waybar-module.mod-focused-win {
     display: none;
   }
 }
@@ -280,14 +306,14 @@ a:hover {
 
 /* Main Layout */
 main {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.25rem;
 }
 
 .section {
-  padding: 6rem 0;
-  min-height: 50vh;
+  padding: 3.5rem 0;
+  min-height: auto;
 }
 
 .section-title {
@@ -1205,3 +1231,968 @@ a, button, [role="button"], .interactive, .hover-glow {
   color: var(--text-color);
   text-align: right;
 }
+
+/* ==========================================================================
+   HYPRLAND TILING WINDOW MANAGER ENGINE
+   ========================================================================== */
+
+.hypr-workspace-section {
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+}
+
+#home.hypr-workspace-section {
+  padding-top: 5.5rem;
+}
+
+/* Workspace Monitor Header Strip */
+.hypr-ws-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+  padding: 0.5rem 0.85rem;
+  background: rgba(16, 18, 22, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 5px;
+  backdrop-filter: blur(8px);
+}
+
+.hypr-ws-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hypr-ws-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #000;
+  background: var(--accent-cyan);
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.hypr-ws-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.hypr-ws-layout-badge {
+  font-size: 0.72rem;
+  color: var(--accent-magenta);
+  background: rgba(255, 0, 170, 0.08);
+  border: 1px solid rgba(255, 0, 170, 0.25);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+
+.hypr-ws-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hypr-ws-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.hypr-ws-hint b {
+  color: var(--accent-cyan);
+}
+
+.hypr-ws-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.6rem;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 0, 170, 0.18);
+  border: 1px solid var(--accent-magenta);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hypr-ws-reset-btn:hover {
+  background: var(--accent-magenta);
+  color: #000;
+}
+
+.hypr-empty-workspace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  background: rgba(15, 15, 18, 0.65);
+  border: 1px dashed rgba(0, 255, 238, 0.3);
+  border-radius: 6px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* HyprWindow Container & Borders (col.active_border / col.inactive_border) */
+.hypr-window {
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 16, 20, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 6px;
+  border: 2px solid rgba(90, 95, 110, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Active Window Border: Hyprland 45deg Cyan -> Magenta glow */
+.hypr-window.focused {
+  border-color: var(--accent-cyan);
+  box-shadow:
+    0 0 0 1px rgba(255, 0, 170, 0.35),
+    0 12px 32px rgba(0, 0, 0, 0.7),
+    0 0 22px rgba(0, 255, 238, 0.18);
+}
+
+.hypr-window.unfocused {
+  opacity: 0.92;
+}
+
+/* Floating Mode (detached & draggable) */
+.hypr-window.mode-floating {
+  border-color: var(--accent-magenta);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.9),
+    0 0 28px rgba(255, 0, 170, 0.35);
+  cursor: grab;
+}
+
+.hypr-window.mode-floating:active {
+  cursor: grabbing;
+}
+
+/* Monocle Fullscreen Mode (expands to 100% of workspace) */
+.hypr-window.mode-fullscreen {
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  min-height: 420px;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 35px rgba(0, 255, 238, 0.28);
+}
+
+/* Window Titlebar */
+.hypr-window-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.42rem 0.75rem;
+  background: rgba(255, 255, 255, 0.035);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  user-select: none;
+}
+
+.hypr-window.focused .hypr-window-titlebar {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 238, 0.1) 0%,
+    rgba(255, 0, 170, 0.06) 100%
+  );
+  border-bottom-color: rgba(0, 255, 238, 0.22);
+}
+
+.hypr-win-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hypr-win-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.hypr-win-dot.active {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.hypr-win-class {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  background: rgba(0, 255, 238, 0.1);
+  border: 1px solid rgba(0, 255, 238, 0.22);
+  padding: 0.08rem 0.4rem;
+  border-radius: 3px;
+  text-transform: lowercase;
+  flex-shrink: 0;
+}
+
+.hypr-win-sep {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.hypr-win-title {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hypr-window.focused .hypr-win-title {
+  color: #fff;
+}
+
+.hypr-win-mode-tag {
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 0.08rem 0.38rem;
+  border-radius: 3px;
+  letter-spacing: 0.4px;
+  flex-shrink: 0;
+}
+
+.hypr-win-mode-tag.float {
+  color: #000;
+  background: var(--accent-magenta);
+}
+
+.hypr-win-mode-tag.monocle {
+  color: #000;
+  background: var(--accent-cyan);
+}
+
+.hypr-win-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.hypr-win-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.18rem 0.42rem;
+  font-family: inherit;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hypr-win-btn:hover,
+.hypr-win-btn.active {
+  color: #000;
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+}
+
+.hypr-win-btn.close:hover {
+  color: #fff;
+  background: #ff4d6d;
+  border-color: #ff4d6d;
+}
+
+.hypr-window-body {
+  padding: 1.35rem 1.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   WORKSPACE 01: 3-WINDOW DWINDLE TILED DESKTOP & SPLIT DIVIDER
+   ========================================================================== */
+
+.hypr-dwindle-desktop {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-height: 460px;
+  width: 100%;
+}
+
+.hypr-dwindle-desktop.resizing {
+  user-select: none;
+}
+
+.hypr-dwindle-master {
+  display: flex;
+  flex-direction: column;
+  transition: width 0.15s ease;
+}
+
+.hypr-dwindle-master .hypr-window {
+  flex: 1;
+}
+
+.hypr-dwindle-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: width 0.15s ease;
+}
+
+.hypr-dwindle-stack .hypr-window {
+  flex: 1;
+}
+
+/* Interactive Vertical Split Handle */
+.hypr-split-divider {
+  width: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: col-resize;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.hypr-split-grip {
+  width: 3px;
+  height: 48px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.14);
+  transition: all 0.2s ease;
+}
+
+.hypr-split-divider:hover .hypr-split-grip,
+.hypr-split-divider.active .hypr-split-grip {
+  height: 85%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.hero-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  background: rgba(0, 255, 238, 0.07);
+  border: 1px solid rgba(0, 255, 238, 0.22);
+  padding: 0.28rem 0.65rem;
+  border-radius: 4px;
+  margin-bottom: 1.1rem;
+  width: fit-content;
+}
+
+.hero-master-window .hero-title {
+  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+  margin-bottom: 0.4rem;
+}
+
+.hero-master-window .subtitle {
+  font-size: 1.15rem;
+  margin-bottom: 1.1rem;
+}
+
+.hero-master-window .summary {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  flex-grow: 1;
+}
+
+.hero-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.hypr-inspect-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  background: rgba(0, 255, 238, 0.08);
+  border: 1px solid rgba(0, 255, 238, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hypr-inspect-btn:hover {
+  background: var(--accent-cyan);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 238, 0.35);
+}
+
+/* Fastfetch Tile in Hero Stack */
+.fastfetch-grid {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.fastfetch-ascii {
+  color: var(--accent-cyan);
+  font-family: inherit;
+  font-size: 0.72rem;
+  line-height: 1.2;
+  margin: 0;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.fastfetch-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ff-header {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.ff-divider {
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin-bottom: 0.2rem;
+}
+
+.ff-key {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.ff-swatches {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+
+.ff-swatches span {
+  width: 16px;
+  height: 8px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Live sfugue Telemetry Simulator Tile in Hero Stack */
+.sfugue-mini-sim {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.85rem;
+  height: 100%;
+}
+
+.sim-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sim-node-status {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--text-color);
+}
+
+.sim-node-status strong {
+  color: var(--accent-cyan);
+}
+
+.sim-state-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 0.4px;
+}
+
+.sim-state-pill.healthy {
+  color: #5af78e;
+  background: rgba(90, 247, 142, 0.12);
+  border: 1px solid rgba(90, 247, 142, 0.3);
+}
+
+.sim-state-pill.evacuating {
+  color: #ffee00;
+  background: rgba(255, 238, 0, 0.14);
+  border: 1px solid rgba(255, 238, 0, 0.4);
+}
+
+.sim-state-pill.recovered {
+  color: var(--accent-cyan);
+  background: rgba(0, 255, 238, 0.14);
+  border: 1px solid rgba(0, 255, 238, 0.4);
+}
+
+.sim-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.sim-metric-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sim-metric-label {
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.sim-metric-val {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.sim-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sim-caption {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.sim-chaos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 0, 170, 0.15);
+  border: 1px solid var(--accent-magenta);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sim-chaos-btn:hover {
+  background: var(--accent-magenta);
+  color: #000;
+  box-shadow: 0 0 14px rgba(255, 0, 170, 0.45);
+}
+
+/* ==========================================================================
+   DYNAMIC REFLOWING DWINDLE GRIDS (EDUCATION, SKILLS, PROJECTS, BLOG, EXTRA)
+   ========================================================================== */
+
+.hypr-tile-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.hypr-tile-grid.cols-2 > .hypr-window {
+  flex: 1 1 calc(50% - 12px);
+  min-width: 300px;
+}
+
+.hypr-tile-grid.cols-3 > .hypr-window {
+  flex: 1 1 calc(33.333% - 12px);
+  min-width: 300px;
+}
+
+.hypr-tile-grid.cols-3 > .hypr-window.featured-span {
+  flex: 2 1 calc(66.666% - 12px);
+}
+
+/* Education & Activity Tile Content */
+.edu-tile-body,
+.extra-tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  height: 100%;
+}
+
+.edu-tile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.edu-tile-body h3 {
+  font-size: 1.18rem;
+  color: #fff;
+  margin: 0;
+}
+
+.edu-tile-body h4 {
+  font-size: 0.88rem;
+  color: var(--accent-cyan);
+  font-weight: 500;
+  margin: 0;
+}
+
+.edu-tile-preview {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 0.4rem;
+}
+
+.hypr-click-hint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+/* Skills Bento & Pill Cloud */
+.hypr-skills-bento {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.hypr-skills-bento > .hypr-window {
+  flex: 1 1 calc(33.333% - 12px);
+  min-width: 280px;
+}
+
+.hypr-skills-bento > .hypr-window.span-wide {
+  flex: 1.6 1 calc(50% - 12px);
+}
+
+.skill-tile-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  height: 100%;
+}
+
+.skill-tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-tile-header h3 {
+  font-size: 1.05rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0;
+}
+
+.skill-pill-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.hypr-skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.34rem 0.68rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(0, 255, 238, 0.2);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.hypr-skill-pill .pill-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+}
+
+.hypr-skill-pill .pill-dep-tag {
+  font-size: 0.64rem;
+  color: var(--accent-magenta);
+  background: rgba(255, 0, 170, 0.12);
+  padding: 0.06rem 0.35rem;
+  border-radius: 3px;
+}
+
+.hypr-skill-pill.dimmed {
+  opacity: 0.22;
+  filter: grayscale(1);
+}
+
+.hypr-skill-pill.filter-match {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 255, 238, 0.14);
+  box-shadow: 0 0 12px rgba(0, 255, 238, 0.22);
+}
+
+.hypr-skill-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-right: 0.2rem;
+}
+
+.hypr-filter-chip {
+  font-family: inherit;
+  font-size: 0.68rem;
+  padding: 0.16rem 0.5rem;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hypr-filter-chip:hover,
+.hypr-filter-chip.active {
+  color: #000;
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+/* Pacman -Qi Modal Package Cards */
+.pacman-inspector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.9rem;
+}
+
+.pacman-pkg-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 255, 238, 0.22);
+  border-radius: 5px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.pacman-pkg-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.pacman-pkg-name {
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.92rem;
+}
+
+.pacman-pkg-repo {
+  font-size: 0.65rem;
+  color: var(--accent-cyan);
+  background: rgba(0, 255, 238, 0.1);
+  padding: 0.1rem 0.38rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.pacman-pkg-deps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.deps-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.deps-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.deps-chip {
+  font-size: 0.68rem;
+  color: var(--accent-magenta);
+  background: rgba(255, 0, 170, 0.1);
+  border: 1px solid rgba(255, 0, 170, 0.25);
+  padding: 0.1rem 0.42rem;
+  border-radius: 3px;
+}
+
+/* Project Tile Styling */
+.project-tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  height: 100%;
+}
+
+.project-tile-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-tile-year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #000;
+  background: var(--accent-cyan);
+  padding: 0.14rem 0.5rem;
+  border-radius: 3px;
+}
+
+.project-tile-type {
+  font-size: 0.74rem;
+  color: var(--accent-magenta);
+}
+
+.project-tile-title {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tile-arrow {
+  color: var(--accent-cyan);
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.hypr-window:hover .tile-arrow {
+  transform: translate(2px, -2px);
+  opacity: 1;
+}
+
+.project-tile-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.project-tile-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.hypr-mini-tag {
+  font-size: 0.7rem;
+  color: var(--accent-cyan);
+  background: rgba(0, 255, 238, 0.08);
+  border: 1px solid rgba(0, 255, 238, 0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+
+.hypr-mini-tag.more {
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Hyprland IPC Toast Notification */
+.hypr-notify-toast {
+  position: fixed;
+  top: 4.2rem;
+  right: 1.5rem;
+  z-index: 2800;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.95rem;
+  background: rgba(12, 14, 18, 0.94);
+  border: 1px solid var(--accent-cyan);
+  border-left: 3px solid var(--accent-magenta);
+  border-radius: 5px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 238, 0.2);
+  font-size: 0.75rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+@media (max-width: 920px) {
+  .hypr-dwindle-desktop {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hypr-dwindle-master,
+  .hypr-dwindle-stack {
+    width: 100% !important;
+  }
+  .hypr-split-divider {
+    display: none;
+  }
+  .hypr-ws-hint {
+    display: none;
+  }
+}
+
