@@ -104,8 +104,13 @@ export default function Projects() {
                     See More Info
                   </Link>
                   {project.githubLink && (
-                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="action-btn interactive" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid var(--glass-border)' }}>
-                      <GithubIcon size={20} /> View Repository
+                    <a 
+                      href={project.githubLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="action-btn-secondary interactive"
+                    >
+                      <GithubIcon size={18} /> View Repository
                     </a>
                   )}
                 </div>

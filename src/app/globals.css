@@ -740,6 +740,32 @@ a, button, [role="button"], .interactive, .hover-glow {
   box-shadow: 0 0 20px rgba(0, 255, 238, 0.4);
 }
 
+.action-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid var(--accent-cyan);
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 238, 0.15);
+}
+
+.action-btn-secondary:hover {
+  background: rgba(0, 255, 238, 0.15);
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 255, 238, 0.4);
+  transform: translateY(-2px);
+}
+
 /* Skills Modal */
 .skills-modal-overlay {
   position: fixed;
