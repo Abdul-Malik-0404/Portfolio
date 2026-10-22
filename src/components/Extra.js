@@ -48,7 +48,7 @@ export default function Extra() {
 
   return (
     <section id="extra" className="section">
-      <h2 className="section-title">Extracurricular</h2>
+      <h2 className="section-title">Activities</h2>
       
       <motion.div 
         className="projects-grid"

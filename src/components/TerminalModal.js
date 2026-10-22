@@ -100,13 +100,13 @@ export default function TerminalModal() {
         case 'skills':
           newHistory.push({
             type: 'output',
-            text: 'Languages: Python, Java, C#, JavaScript, TypeScript, C++, Shell, Kotlin\nTools: Linux (Arch), Git, Docker, Neovim, FastApi, Next.js, GCP'
+            text: 'Languages: Python, Java, C#, JavaScript, TypeScript, C++, Shell, Kotlin\nStack & Tools: Linux (Arch), Kubernetes (KinD), Docker, Kafka, Prometheus, Chaos Mesh, WebRTC/Mediasoup, FastAPI, Next.js, GCP'
           });
           break;
         case 'projects':
           newHistory.push({
             type: 'output',
-            text: '• Jeb: AI Job Scout & Resume Tailor (FastAPI + Next.js + Custom ML)\n• Zawj: Secure E2EE Messaging App with WebRTC\n• All-rounder: Youth Platform showcased at Cutting Edge\n• Dotfiles: Keyboard-driven Arch Linux setup'
+            text: '• sfugue (FYP): Distributed WebRTC SFU Chaos & SFrame E2EE Failover Testbed\n• Jeb: AI Job Scout & Resume Tailor (FastAPI + Next.js + Custom ML)\n• Zawj: Secure E2EE Messaging App with WebRTC\n• All-rounder: Youth Platform showcased at Cutting Edge\n• Dotfiles: Keyboard-driven Arch Linux setup'
           });
           break;
         case 'contact':

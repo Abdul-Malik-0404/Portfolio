@@ -16,8 +16,8 @@ const skillsData = [
   },
   { 
     id: 'tools', 
-    title: 'Tools', 
-    items: ['Linux (Arch)', 'Git', 'Docker', 'Android Studio', 'VS Code', 'Neovim', 'IntelliJ IDEA', 'Netbeans'] 
+    title: 'Tools & DevOps', 
+    items: ['Linux (Arch)', 'Git', 'Docker', 'Kubernetes (KinD)', 'Prometheus', 'Chaos Mesh', 'Android Studio', 'VS Code', 'Neovim', 'IntelliJ IDEA'] 
   },
   { 
     id: 'soft-skills', 
@@ -26,8 +26,8 @@ const skillsData = [
   },
   { 
     id: 'cloud-backend', 
-    title: 'Cloud & Backend', 
-    items: ['Node.js', 'Express.js', 'Kafka', 'PostgreSQL', 'Firebase', 'Google Cloud Platform (GCP)'] 
+    title: 'Cloud, Backend & Real-Time', 
+    items: ['FastAPI', 'Next.js', 'Node.js', 'Express.js', 'Apache Kafka', 'WebRTC / Mediasoup', 'PostgreSQL', 'Firebase', 'Google Cloud Platform (GCP)'] 
   }
 ];
 

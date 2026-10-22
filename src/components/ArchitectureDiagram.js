@@ -5,6 +5,54 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Network, ArrowRight, ShieldCheck, Cpu, Database, Server, Smartphone, Terminal, RefreshCw } from 'lucide-react';
 
 const ARCHITECTURES = {
+  sfugue: {
+    title: 'sfugue: Proactive Stateful SFU Evacuation & SFrame E2EE Failover',
+    description: 'Click any node to inspect the chaos testbed, telemetry pipeline, and E2EE failover engine.',
+    nodes: [
+      {
+        id: 'peers',
+        label: 'WebRTC Peers (SFrame E2EE)',
+        icon: ShieldCheck,
+        color: '#5af78e',
+        details: 'Application-layer End-to-End Encryption using W3C Insertable Streams and SFrame (AES-GCM / ChaCha20). Maintains an evolving cryptographic ratchet under zero-trust.'
+      },
+      {
+        id: 'sfu',
+        label: 'Mediasoup SFU (C++ Workers)',
+        icon: Server,
+        color: 'var(--accent-cyan)',
+        details: 'Containerized TypeScript & C++ Selective Forwarding Unit workers managing UDP/ICE sockets, RTP packet forwarding, and exposing real-time Prometheus telemetry (/metrics).'
+      },
+      {
+        id: 'chaos',
+        label: 'Chaos Mesh & KinD K8s',
+        icon: Terminal,
+        color: 'var(--accent-magenta)',
+        details: 'Kubernetes (KinD) cluster running Chaos Mesh fault-injection policies to empirically simulate network jitter (>40ms), kernel UDP buffer drops, and cascading pod failures.'
+      },
+      {
+        id: 'telemetry',
+        label: 'Prometheus Anomaly Watcher',
+        icon: Cpu,
+        color: 'var(--accent-yellow)',
+        details: 'Monitors sub-minute worker metrics to detect the algorithmic "Death Signature"—identifying exponential PLI/FIR keyframe storms and NACK spikes before CPU saturation hits 100%.'
+      },
+      {
+        id: 'kafka',
+        label: 'Apache Kafka Control Plane',
+        icon: RefreshCw,
+        color: 'var(--accent-cyan)',
+        details: 'High-throughput distributed control plane that broadcasts proactive session evacuation commands across SFU nodes the moment a degradation signature is detected.'
+      },
+      {
+        id: 'evac',
+        label: 'Stateful Session Evacuation',
+        icon: Network,
+        color: '#5af78e',
+        details: 'Preemptively migrates active WebRTC sessions to healthy SFU workers, coordinating IDR keyframe synchronization and SFrame cryptographic ratchet recovery to minimize blackout latency.'
+      }
+    ]
+  },
   jeb: {
     title: 'Jeb: Agentic Job Scout & ML Resume Engine',
     description: 'Click any node to inspect data flow, authorization boundaries, and processing stages.',

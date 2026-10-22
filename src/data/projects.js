@@ -1,5 +1,16 @@
 export const projects = [
   {
+    id: 'sfugue',
+    title: 'sfugue',
+    type: 'Distributed WebRTC SFU Chaos & E2EE Failover (FYP)',
+    year: '2026',
+    description: 'An empirical chaos-engineering testbed designed to measure and minimize End-to-End Encryption (SFrame) cryptographic blackout latency during distributed WebRTC SFU node failures.',
+    about: 'sfugue is my Final Year Project—an empirical chaos-engineering testbed and proactive stateful session evacuation engine for distributed WebRTC Selective Forwarding Units (SFUs).\n\nStandard WebRTC platforms suffer from multi-second media freezes and unmeasured SFrame cryptographic blackouts when SFU nodes degrade or crash. sfugue detects the algorithmic "Death Signature" of cascading SFU failures (network jitter, UDP buffer drops, and PLI/NACK keyframe storms) via sub-minute Prometheus telemetry, and orchestrates proactive stateful session migration across containerized Mediasoup (C++) workers using an Apache Kafka control plane and Chaos Mesh on Kubernetes (KinD).',
+    techStack: ['TypeScript', 'Node.js', 'Mediasoup (C++)', 'WebRTC / SFrame', 'Kubernetes (KinD)', 'Apache Kafka', 'Prometheus', 'Chaos Mesh'],
+    githubLink: 'https://github.com/Abdul-Malik-0404/sfugue',
+    media: []
+  },
+  {
     id: 'jeb',
     title: 'Jeb',
     type: 'AI Job Scout & Resume Tailor',

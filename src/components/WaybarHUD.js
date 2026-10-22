@@ -65,7 +65,7 @@ export default function WaybarHUD() {
   }, []);
 
   return (
-    <div className="waybar-container">
+    <div className="waybar-group waybar-right">
       <div className="waybar-module mod-os">
         <span className="dot-pulse"></span>
         <Cpu size={14} className="icon-cyan" />
