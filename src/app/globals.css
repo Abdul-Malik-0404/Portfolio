@@ -369,7 +369,8 @@ main {
   line-height: 1.1;
   letter-spacing: -1px;
   position: relative;
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 .subtitle {
   font-size: 1.5rem;
@@ -1776,8 +1777,15 @@ a, button, [role="button"], .interactive, .hover-glow {
   gap: 1rem;
 }
 
+.hero-bio-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
 .hero-status-chip {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.7rem;
@@ -1792,7 +1800,10 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .hero-tiled-inner .hero-title {
+  display: block;
+  width: 100%;
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  margin-top: 0.2rem;
   margin-bottom: 0.35rem;
 }
 

@@ -60,7 +60,7 @@ export default function Hero() {
       appClass: 'nvim',
       renderTiled: ({ expand }) => (
         <div className="hero-tiled-inner">
-          <div>
+          <div className="hero-bio-header">
             <div className="hero-status-chip">
               <span className="dot-pulse" />
               <span>SYSTEMS &amp; AI ENGINEER // ARCH LINUX</span>
