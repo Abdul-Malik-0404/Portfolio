@@ -979,3 +979,104 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-family: inherit;
   font-size: 0.9rem;
 }
+
+/* Architecture Explorer Styles */
+.arch-diagram-wrapper {
+  margin: 2.5rem 0;
+  background: rgba(18, 18, 18, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.arch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.8rem;
+}
+
+.arch-hint {
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.arch-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  overflow-x: auto;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: thin;
+}
+
+.arch-node-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.arch-node-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem 0.8rem;
+  min-width: 140px;
+  max-width: 160px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.arch-node-card.selected {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 15px rgba(0, 255, 238, 0.2);
+}
+
+.arch-node-label {
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.arch-connector {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.connector-arrow {
+  color: var(--accent-cyan);
+}
+
+.arch-inspector {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.2rem;
+  position: relative;
+}
+
+.inspector-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}

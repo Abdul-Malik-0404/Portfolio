@@ -3,6 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 
+import ArchitectureDiagram from '../../../components/ArchitectureDiagram';
+
 export default function ZawjProject() {
   return (
     <>
@@ -45,6 +47,8 @@ export default function ZawjProject() {
                 Established a remote, headless monitoring environment using SSH (Mosh) and Tmux to oversee the autonomous AI developer agents in real-time from a mobile device.
               </p>
             </div>
+
+            <ArchitectureDiagram projectId="zawj" />
 
             {/* <h3 style={{ color: '#fff', marginBottom: '1rem', fontSize: '1.4rem' }}>Media & Demonstrations</h3>
             <div className="project-media-grid"> */}

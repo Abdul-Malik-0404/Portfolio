@@ -4,6 +4,8 @@ import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import GithubIcon from '../../../components/GithubIcon';
 
+import ArchitectureDiagram from '../../../components/ArchitectureDiagram';
+
 export default function JebProject() {
   return (
     <>
@@ -46,6 +48,8 @@ export default function JebProject() {
               <br />
               The backend is powered by FastAPI, PostgreSQL, and Celery for distributed task processing, while the frontend is built using Next.js and Shadcn/UI. The entire infrastructure is containerized with Docker for easy deployment and management.
             </div>
+
+            <ArchitectureDiagram projectId="jeb" />
 
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>
               <a href="https://github.com/Abdul-Malik-0404/Jeb" target="_blank" rel="noopener noreferrer" className="action-btn" style={{ textDecoration: 'none' }}>
