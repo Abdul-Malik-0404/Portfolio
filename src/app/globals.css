@@ -127,51 +127,59 @@ a:hover {
 }
 
 .nav-content {
-  max-width: 1240px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
 }
 
 .waybar-shell {
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   background: rgba(13, 13, 13, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   border-radius: 6px;
-  padding: 0.35rem 0.6rem;
+  padding: 0.32rem 0.5rem;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
 }
 
 .waybar-group {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.waybar-right {
+  flex-shrink: 0;
 }
 
 .waybar-workspaces {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.28rem;
 }
 
 .waybar-module {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
   background: rgba(255, 255, 255, 0.03);
-  padding: 0.28rem 0.65rem;
+  padding: 0.24rem 0.52rem;
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-color);
   white-space: nowrap;
   transition: all 0.2s ease;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .mod-launcher {
@@ -246,9 +254,15 @@ a:hover {
   100% { transform: scale(0.9); opacity: 0.7; }
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1220px) {
   .waybar-module.mod-os,
   .waybar-module.mod-status {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .waybar-module.mod-git {
     display: none;
   }
 }
@@ -832,14 +846,19 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .skill-badge-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
   background: rgba(0, 255, 238, 0.05);
   border: 1px solid rgba(0, 255, 238, 0.2);
-  padding: 1rem 0.5rem;
+  padding: 0.85rem 0.75rem;
   text-align: center;
+  line-height: 1.35;
   border-radius: 4px;
   color: #fff;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.2s ease;
 }
 

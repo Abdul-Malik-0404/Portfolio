@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Home } from 'lucide-react';
 import WaybarHUD from './WaybarHUD';
 
@@ -16,6 +17,30 @@ const NAV_WORKSPACES = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeWs, setActiveWs] = useState(1);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const cleanHash = () => {
+      if (typeof window !== 'undefined' && window.location.hash) {
+        const targetId = window.location.hash.replace('#', '');
+        const el = document.getElementById(targetId);
+        if (el) {
+          const matchedWs = NAV_WORKSPACES.find((w) => w.target === targetId);
+          if (matchedWs) setActiveWs(matchedWs.id);
+          window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+        }
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+    };
+
+    cleanHash();
+    const timer = setTimeout(cleanHash, 80);
+    window.addEventListener('hashchange', cleanHash);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', cleanHash);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +65,9 @@ export default function Navbar() {
     if (el) {
       e.preventDefault();
       if (wsId) setActiveWs(wsId);
+      if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
       window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
     }
   };
