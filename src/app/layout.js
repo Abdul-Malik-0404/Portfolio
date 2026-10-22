@@ -2,6 +2,7 @@ import './globals.css';
 import { JetBrains_Mono } from 'next/font/google';
 import CustomCursor from '../components/CustomCursor';
 import TerminalModal from '../components/TerminalModal';
+import HyprlandController from '../components/HyprlandController';
 
 const jetbrainsMono = JetBrains_Mono({ 
   subsets: ['latin'], 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       <body className={jetbrainsMono.variable}>
         <CustomCursor />
         <TerminalModal />
+        <HyprlandController />
         {children}
       </body>
     </html>
