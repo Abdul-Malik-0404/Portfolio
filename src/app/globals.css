@@ -79,6 +79,196 @@
   --swatch-5: #7aa2f7;
 }
 
+[data-theme="nord"] {
+  /* Nord Arctic Palette */
+  --bg-color: #2e3440;
+  --bg-darker: #242933;
+  --bg-crust: #1e222a;
+  --bg-grid: rgba(76, 86, 106, 0.28);
+  
+  --text-color: #eceff4;
+  --text-muted: #d8dee9;
+  --text-subtle: #4c566a;
+  
+  --accent-cyan: #88c0d0;       /* Frost Ice Blue */
+  --accent-cyan-rgb: 136, 192, 208;
+  --accent-blue: #81a1c1;       /* Frost Deep Blue */
+  --accent-blue-rgb: 129, 161, 193;
+  --accent-magenta: #b48ead;    /* Aurora Purple */
+  --accent-magenta-rgb: 180, 142, 173;
+  --accent-lavender: #8fbcbb;   /* Frost Teal */
+  --accent-green: #a3be8c;      /* Aurora Green */
+  --accent-yellow: #ebcb8b;     /* Aurora Yellow */
+  --accent-red: #bf616a;        /* Aurora Red */
+  --accent-peach: #d08770;      /* Aurora Orange */
+  
+  --card-bg: rgba(46, 52, 64, 0.88);
+  --card-bg-elevated: rgba(59, 66, 82, 0.78);
+  --border-color: rgba(76, 86, 106, 0.45);
+  --glass-border: rgba(136, 192, 208, 0.22);
+  --active-border-gradient: linear-gradient(45deg, #88c0d0, #b48ead);
+  --active-border-shadow: 0 0 20px rgba(136, 192, 208, 0.16);
+  --active-border-ring: rgba(180, 142, 173, 0.3);
+  
+  --swatch-1: #88c0d0;
+  --swatch-2: #81a1c1;
+  --swatch-3: #a3be8c;
+  --swatch-4: #ebcb8b;
+  --swatch-5: #b48ead;
+}
+
+[data-theme="gruvbox"] {
+  /* Gruvbox Dark Palette */
+  --bg-color: #282828;
+  --bg-darker: #1d2021;
+  --bg-crust: #141617;
+  --bg-grid: rgba(102, 92, 84, 0.3);
+  
+  --text-color: #ebdbb2;
+  --text-muted: #a89984;
+  --text-subtle: #665c54;
+  
+  --accent-cyan: #8ec07c;       /* Aqua */
+  --accent-cyan-rgb: 142, 192, 124;
+  --accent-blue: #83a598;       /* Blue */
+  --accent-blue-rgb: 131, 165, 152;
+  --accent-magenta: #fe8019;    /* Orange */
+  --accent-magenta-rgb: 254, 128, 25;
+  --accent-lavender: #d3869b;   /* Purple */
+  --accent-green: #b8bb26;      /* Green */
+  --accent-yellow: #fabd2f;     /* Yellow */
+  --accent-red: #fb4934;        /* Red */
+  --accent-peach: #fe8019;      /* Orange */
+  
+  --card-bg: rgba(40, 40, 40, 0.9);
+  --card-bg-elevated: rgba(60, 56, 54, 0.82);
+  --border-color: rgba(102, 92, 84, 0.45);
+  --glass-border: rgba(142, 192, 124, 0.22);
+  --active-border-gradient: linear-gradient(45deg, #8ec07c, #fe8019);
+  --active-border-shadow: 0 0 20px rgba(142, 192, 124, 0.16);
+  --active-border-ring: rgba(254, 128, 25, 0.3);
+  
+  --swatch-1: #8ec07c;
+  --swatch-2: #83a598;
+  --swatch-3: #b8bb26;
+  --swatch-4: #fabd2f;
+  --swatch-5: #fe8019;
+}
+
+[data-theme="rose-pine"] {
+  /* Rosé Pine Palette */
+  --bg-color: #191724;
+  --bg-darker: #13111b;
+  --bg-crust: #0f0d15;
+  --bg-grid: rgba(68, 65, 90, 0.28);
+  
+  --text-color: #e0def4;
+  --text-muted: #908caa;
+  --text-subtle: #6e6a86;
+  
+  --accent-cyan: #9ccfd8;       /* Foam */
+  --accent-cyan-rgb: 156, 207, 216;
+  --accent-blue: #31748f;       /* Pine */
+  --accent-blue-rgb: 49, 116, 143;
+  --accent-magenta: #ebbcba;    /* Rose */
+  --accent-magenta-rgb: 235, 188, 186;
+  --accent-lavender: #c4a7e7;   /* Iris */
+  --accent-green: #9ccfd8;
+  --accent-yellow: #f6c177;     /* Gold */
+  --accent-red: #eb6f92;        /* Love */
+  --accent-peach: #f6c177;
+  
+  --card-bg: rgba(25, 23, 36, 0.9);
+  --card-bg-elevated: rgba(38, 35, 58, 0.82);
+  --border-color: rgba(68, 65, 90, 0.45);
+  --glass-border: rgba(156, 207, 216, 0.22);
+  --active-border-gradient: linear-gradient(45deg, #9ccfd8, #ebbcba);
+  --active-border-shadow: 0 0 20px rgba(156, 207, 216, 0.16);
+  --active-border-ring: rgba(235, 188, 186, 0.3);
+  
+  --swatch-1: #9ccfd8;
+  --swatch-2: #31748f;
+  --swatch-3: #eb6f92;
+  --swatch-4: #f6c177;
+  --swatch-5: #c4a7e7;
+}
+
+[data-theme="dracula"] {
+  /* Dracula Official Palette */
+  --bg-color: #282a36;
+  --bg-darker: #21222c;
+  --bg-crust: #191a21;
+  --bg-grid: rgba(98, 114, 164, 0.25);
+  
+  --text-color: #f8f8f2;
+  --text-muted: #bd93f9;
+  --text-subtle: #6272a4;
+  
+  --accent-cyan: #8be9fd;       /* Dracula Cyan */
+  --accent-cyan-rgb: 139, 233, 253;
+  --accent-blue: #bd93f9;       /* Dracula Purple */
+  --accent-blue-rgb: 189, 147, 249;
+  --accent-magenta: #ff79c6;    /* Dracula Pink */
+  --accent-magenta-rgb: 255, 121, 198;
+  --accent-lavender: #bd93f9;
+  --accent-green: #50fa7b;      /* Green */
+  --accent-yellow: #f1fa8c;     /* Yellow */
+  --accent-red: #ff5555;        /* Red */
+  --accent-peach: #ffb86c;      /* Orange */
+  
+  --card-bg: rgba(40, 42, 54, 0.9);
+  --card-bg-elevated: rgba(68, 71, 90, 0.82);
+  --border-color: rgba(98, 114, 164, 0.45);
+  --glass-border: rgba(139, 233, 253, 0.22);
+  --active-border-gradient: linear-gradient(45deg, #8be9fd, #ff79c6);
+  --active-border-shadow: 0 0 20px rgba(139, 233, 253, 0.18);
+  --active-border-ring: rgba(255, 121, 198, 0.32);
+  
+  --swatch-1: #8be9fd;
+  --swatch-2: #bd93f9;
+  --swatch-3: #50fa7b;
+  --swatch-4: #f1fa8c;
+  --swatch-5: #ff79c6;
+}
+
+[data-theme="everforest"] {
+  /* Everforest Dark Palette */
+  --bg-color: #2d353b;
+  --bg-darker: #232a2e;
+  --bg-crust: #1e2326;
+  --bg-grid: rgba(133, 146, 137, 0.24);
+  
+  --text-color: #d3c6aa;
+  --text-muted: #9da9a0;
+  --text-subtle: #7a8478;
+  
+  --accent-cyan: #83c092;       /* Aqua */
+  --accent-cyan-rgb: 131, 192, 146;
+  --accent-blue: #7fbbb3;       /* Blue */
+  --accent-blue-rgb: 127, 187, 179;
+  --accent-magenta: #e67e80;    /* Red/Rose */
+  --accent-magenta-rgb: 230, 126, 128;
+  --accent-lavender: #d699b6;   /* Purple */
+  --accent-green: #a7c080;      /* Green */
+  --accent-yellow: #dbbc7f;     /* Yellow */
+  --accent-red: #e67e80;
+  --accent-peach: #e69875;      /* Orange */
+  
+  --card-bg: rgba(45, 53, 59, 0.9);
+  --card-bg-elevated: rgba(58, 68, 76, 0.82);
+  --border-color: rgba(133, 146, 137, 0.42);
+  --glass-border: rgba(131, 192, 146, 0.22);
+  --active-border-gradient: linear-gradient(45deg, #83c092, #a7c080);
+  --active-border-shadow: 0 0 20px rgba(131, 192, 146, 0.16);
+  --active-border-ring: rgba(167, 192, 128, 0.3);
+  
+  --swatch-1: #83c092;
+  --swatch-2: #7fbbb3;
+  --swatch-3: #a7c080;
+  --swatch-4: #dbbc7f;
+  --swatch-5: #e67e80;
+}
+
 [data-theme="neon"] {
   /* Legacy High-Contrast Cyber Neon */
   --bg-color: #0d0d0d;

@@ -16,6 +16,11 @@ export const WORKSPACE_LIST = [
 export const THEMES = [
   { id: 'catppuccin', label: 'Catppuccin Mocha', tag: 'catppuccin', short: 'mocha' },
   { id: 'tokyo-night', label: 'Tokyo Night', tag: 'tokyo-night', short: 'tokyo' },
+  { id: 'nord', label: 'Nord Arctic', tag: 'nord', short: 'nord' },
+  { id: 'gruvbox', label: 'Gruvbox Dark', tag: 'gruvbox', short: 'gruvbox' },
+  { id: 'rose-pine', label: 'Rosé Pine', tag: 'rose-pine', short: 'rose' },
+  { id: 'dracula', label: 'Dracula', tag: 'dracula', short: 'dracula' },
+  { id: 'everforest', label: 'Everforest', tag: 'everforest', short: 'forest' },
   { id: 'neon', label: 'Hypr Neon (Legacy)', tag: 'neon', short: 'neon' },
 ];
 

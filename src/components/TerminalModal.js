@@ -22,7 +22,7 @@ const ASCII_LOGO = `
 const HELP_TEXT = `
 Available commands:
   neofetch      - Display system info & specs
-  theme [name]  - View or switch rice theme (catppuccin | tokyo-night | neon)
+  theme [name]  - View or switch rice theme (catppuccin | tokyo-night | nord | gruvbox | rose-pine | dracula | everforest | neon)
   about         - Who is Abdul Malik?
   skills        - List core technical stack
   projects      - List featured projects
@@ -696,7 +696,7 @@ export default function TerminalModal() {
         if (!themeArg) {
           newHistory.push({
             type: 'output',
-            text: `Current rice theme: ${currentTheme}\nAvailable themes:\n  • catppuccin  (Catppuccin Mocha - soft pastel, easy on eyes)\n  • tokyo-night (Tokyo Night - deep blue aesthetic)\n  • neon        (Hypr Neon - high contrast cyber glow)\n\nUsage: theme [catppuccin|tokyo-night|neon] (or press 'T' to cycle)`
+            text: `Current rice theme: ${currentTheme}\nAvailable themes:\n  • catppuccin  (Catppuccin Mocha - soothing pastel, default)\n  • tokyo-night (Tokyo Night - deep blue cyberpunk aesthetic)\n  • nord        (Nord Arctic - clean Scandinavian cold palette)\n  • gruvbox     (Gruvbox Dark - retro warm earthy terminal)\n  • rose-pine   (Rosé Pine - dreamy indie aesthetic)\n  • dracula     (Dracula - gothic dark high-readability)\n  • everforest  (Everforest - organic green & muted earth)\n  • neon        (Hypr Neon - high contrast cyber glow)\n\nUsage: theme [name] (or press 'T' to cycle)`
           });
         } else if (['catppuccin', 'mocha'].includes(themeArg)) {
           setTheme('catppuccin');
@@ -710,6 +710,36 @@ export default function TerminalModal() {
             type: 'success',
             text: `[hyprctl]: rice theme switched to Tokyo Night (~/.config/hypr/themes/tokyo-night.conf applied)`
           });
+        } else if (['nord', 'arctic'].includes(themeArg)) {
+          setTheme('nord');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Nord Arctic (~/.config/hypr/themes/nord.conf applied)`
+          });
+        } else if (['gruvbox', 'gruv'].includes(themeArg)) {
+          setTheme('gruvbox');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Gruvbox Dark (~/.config/hypr/themes/gruvbox.conf applied)`
+          });
+        } else if (['rose-pine', 'rose', 'rosepine'].includes(themeArg)) {
+          setTheme('rose-pine');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Rosé Pine (~/.config/hypr/themes/rose-pine.conf applied)`
+          });
+        } else if (['dracula', 'drac'].includes(themeArg)) {
+          setTheme('dracula');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Dracula (~/.config/hypr/themes/dracula.conf applied)`
+          });
+        } else if (['everforest', 'forest'].includes(themeArg)) {
+          setTheme('everforest');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Everforest (~/.config/hypr/themes/everforest.conf applied)`
+          });
         } else if (['neon', 'hypr-neon', 'cyber'].includes(themeArg)) {
           setTheme('neon');
           newHistory.push({
@@ -719,7 +749,7 @@ export default function TerminalModal() {
         } else {
           newHistory.push({
             type: 'error',
-            text: `Unknown theme: '${tokens[1]}'. Valid options: catppuccin, tokyo-night, neon.`
+            text: `Unknown theme: '${tokens[1]}'. Valid options: catppuccin, tokyo-night, nord, gruvbox, rose-pine, dracula, everforest, neon.`
           });
         }
         setHistory(newHistory);

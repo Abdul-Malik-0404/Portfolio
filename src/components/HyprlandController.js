@@ -166,7 +166,7 @@ export default function HyprlandController() {
                 <div className="shortcut-row">
                   <span className="key-combo">T</span>
                   <span className="shortcut-desc">
-                    Cycle Rice Theme (<b>Catppuccin Mocha</b> / <b>Tokyo Night</b> / <b>Hypr Neon</b>)
+                    Cycle Rice Theme (<b>Catppuccin</b>, <b>Tokyo Night</b>, <b>Nord</b>, <b>Gruvbox</b>, <b>Rosé Pine</b>, <b>Dracula</b>, <b>Everforest</b>, <b>Neon</b>)
                   </span>
                 </div>
                 <div className="shortcut-row">
