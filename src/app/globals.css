@@ -1,18 +1,133 @@
-/* Hyprland Inspired Aesthetic */
-:root {
+/* ==========================================================================
+   HYPRLAND THEMING ENGINE: CATPPUCCIN MOCHA, TOKYO NIGHT & HYPR NEON
+   ========================================================================== */
+
+:root,
+[data-theme="catppuccin"] {
+  /* Catppuccin Mocha Official Palette */
+  --bg-color: #1e1e2e;
+  --bg-darker: #181825;
+  --bg-crust: #11111b;
+  --bg-grid: rgba(69, 71, 90, 0.22);
+  
+  --text-color: #cdd6f4;
+  --text-muted: #a6adc8;
+  --text-subtle: #6c7086;
+  
+  --accent-cyan: #89dceb;       /* Sky */
+  --accent-cyan-rgb: 137, 220, 235;
+  --accent-blue: #89b4fa;       /* Blue */
+  --accent-blue-rgb: 137, 180, 250;
+  --accent-magenta: #cba6f7;    /* Mauve */
+  --accent-magenta-rgb: 203, 166, 247;
+  --accent-lavender: #b4befe;   /* Lavender */
+  --accent-green: #a6e3a1;      /* Green */
+  --accent-yellow: #f9e2af;     /* Yellow */
+  --accent-red: #f38ba8;        /* Red */
+  --accent-peach: #fab387;      /* Peach */
+  
+  --card-bg: rgba(30, 30, 46, 0.88);
+  --card-bg-elevated: rgba(49, 50, 68, 0.75);
+  --border-color: rgba(69, 71, 90, 0.42);
+  --glass-border: rgba(137, 220, 235, 0.2);
+  --active-border-gradient: linear-gradient(45deg, #cba6f7, #89b4fa);
+  --active-border-shadow: 0 0 20px rgba(137, 220, 235, 0.16);
+  --active-border-ring: rgba(203, 166, 247, 0.3);
+  
+  --swatch-1: #89dceb;
+  --swatch-2: #cba6f7;
+  --swatch-3: #a6e3a1;
+  --swatch-4: #f9e2af;
+  --swatch-5: #89b4fa;
+}
+
+[data-theme="tokyo-night"] {
+  /* Tokyo Night Storm/Night Palette */
+  --bg-color: #1a1b26;
+  --bg-darker: #16161e;
+  --bg-crust: #13141c;
+  --bg-grid: rgba(65, 72, 104, 0.26);
+  
+  --text-color: #c0caf5;
+  --text-muted: #9aa5ce;
+  --text-subtle: #565f89;
+  
+  --accent-cyan: #7dcfff;       /* Tokyo Cyan */
+  --accent-cyan-rgb: 125, 207, 255;
+  --accent-blue: #7aa2f7;       /* Tokyo Blue */
+  --accent-blue-rgb: 122, 162, 247;
+  --accent-magenta: #bb9af7;    /* Tokyo Purple */
+  --accent-magenta-rgb: 187, 154, 247;
+  --accent-lavender: #b4f9f8;
+  --accent-green: #9ece6a;
+  --accent-yellow: #e0af68;
+  --accent-red: #f7768e;
+  --accent-peach: #ff9e64;
+  
+  --card-bg: rgba(26, 27, 38, 0.88);
+  --card-bg-elevated: rgba(36, 40, 59, 0.78);
+  --border-color: rgba(65, 72, 104, 0.45);
+  --glass-border: rgba(125, 207, 255, 0.2);
+  --active-border-gradient: linear-gradient(45deg, #7aa2f7, #bb9af7);
+  --active-border-shadow: 0 0 20px rgba(122, 162, 247, 0.16);
+  --active-border-ring: rgba(187, 154, 247, 0.3);
+  
+  --swatch-1: #7dcfff;
+  --swatch-2: #bb9af7;
+  --swatch-3: #9ece6a;
+  --swatch-4: #e0af68;
+  --swatch-5: #7aa2f7;
+}
+
+[data-theme="neon"] {
+  /* Legacy High-Contrast Cyber Neon */
   --bg-color: #0d0d0d;
+  --bg-darker: #070707;
+  --bg-crust: #040404;
   --bg-grid: #1a1a1a;
+  
   --text-color: #e6e6e6;
   --text-muted: #a0a0a0;
+  --text-subtle: #666666;
   
-  /* Hyprland signature colors */
   --accent-cyan: #00ffee;
+  --accent-cyan-rgb: 0, 255, 238;
+  --accent-blue: #00d2ff;
+  --accent-blue-rgb: 0, 210, 255;
   --accent-magenta: #ff00ff;
+  --accent-magenta-rgb: 255, 0, 255;
+  --accent-lavender: #bd93f9;
+  --accent-green: #5af78e;
   --accent-yellow: #f5e027;
+  --accent-red: #ff5c57;
+  --accent-peach: #ffaa55;
   
-  --card-bg: rgba(15, 15, 15, 0.85);
-  --border-color: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(0, 255, 238, 0.15);
+  --card-bg: rgba(15, 15, 15, 0.88);
+  --card-bg-elevated: rgba(25, 25, 25, 0.85);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(0, 255, 238, 0.18);
+  --active-border-gradient: linear-gradient(45deg, #00ffee, #ff00ff);
+  --active-border-shadow: 0 0 22px rgba(0, 255, 238, 0.2);
+  --active-border-ring: rgba(255, 0, 255, 0.35);
+  
+  --swatch-1: #00ffee;
+  --swatch-2: #ff00aa;
+  --swatch-3: #5af78e;
+  --swatch-4: #ffee00;
+  --swatch-5: #bd93f9;
+}
+
+html,
+body,
+.glass-card,
+.hypr-window,
+.waybar-shell,
+.terminal-window,
+.hypr-ws-bar,
+.timeline-item,
+.hypr-border,
+.pacman-pkg-card {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 * {
@@ -46,7 +161,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle at 50% 0%, rgba(0, 255, 238, 0.05) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(var(--accent-cyan-rgb), 0.05) 0%, transparent 60%);
   z-index: -1;
   pointer-events: none;
 }
@@ -59,7 +174,7 @@ a {
 
 a:hover {
   color: var(--accent-cyan);
-  text-shadow: 0 0 10px rgba(0, 255, 238, 0.5);
+  text-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.35);
 }
 
 /* Sharp Window Cards (Hyprland Style) */
@@ -83,8 +198,8 @@ a:hover {
   transform: translateY(-3px) scale(1.01);
   border-color: var(--accent-cyan);
   box-shadow: 
-    0 0 15px rgba(0, 255, 238, 0.2),
-    inset 0 0 10px rgba(0, 255, 238, 0.05);
+    0 0 15px rgba(var(--accent-cyan-rgb), 0.2),
+    inset 0 0 10px rgba(var(--accent-cyan-rgb), 0.05);
   z-index: 10;
 }
 
@@ -99,7 +214,7 @@ a:hover {
   position: absolute;
   inset: -1px;
   border-radius: 5px;
-  background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta), var(--accent-cyan));
+  background: var(--active-border-gradient);
   z-index: -1;
   background-size: 200% 200%;
   animation: borderPan 3s linear infinite;
@@ -185,8 +300,8 @@ a:hover {
 .mod-launcher {
   color: var(--accent-cyan);
   font-weight: 700;
-  border-color: rgba(0, 255, 238, 0.2);
-  background: rgba(0, 255, 238, 0.06);
+  border-color: rgba(var(--accent-cyan-rgb), 0.2);
+  background: rgba(var(--accent-cyan-rgb), 0.06);
 }
 
 .waybar-ws {
@@ -202,16 +317,16 @@ a:hover {
 .waybar-ws:hover,
 .mod-launcher:hover {
   color: #fff;
-  border-color: rgba(0, 255, 238, 0.45);
-  background: rgba(0, 255, 238, 0.1);
+  border-color: rgba(var(--accent-cyan-rgb), 0.45);
+  background: rgba(var(--accent-cyan-rgb), 0.1);
   text-shadow: none;
 }
 
 .waybar-ws.active {
   color: #fff;
-  background: rgba(0, 255, 238, 0.14);
+  background: rgba(var(--accent-cyan-rgb), 0.14);
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 12px rgba(0, 255, 238, 0.2);
+  box-shadow: 0 0 12px rgba(var(--accent-cyan-rgb), 0.2);
 }
 
 .waybar-ws.active .ws-num {
@@ -242,9 +357,9 @@ a:hover {
 .dot-pulse {
   width: 6px;
   height: 6px;
-  background-color: #5af78e;
+  background-color: var(--accent-green);
   border-radius: 50%;
-  box-shadow: 0 0 8px #5af78e;
+  box-shadow: 0 0 8px var(--accent-green);
   animation: pulse 2s infinite ease-in-out;
 }
 
@@ -257,8 +372,8 @@ a:hover {
 .mod-focused-win {
   max-width: 230px;
   overflow: hidden;
-  border-color: rgba(0, 255, 238, 0.22);
-  background: rgba(0, 255, 238, 0.05);
+  border-color: rgba(var(--accent-cyan-rgb), 0.22);
+  background: rgba(var(--accent-cyan-rgb), 0.05);
 }
 
 .mod-win-text {
@@ -270,7 +385,7 @@ a:hover {
 .mod-retile {
   cursor: pointer;
   color: #fff;
-  background: rgba(255, 0, 170, 0.16);
+  background: rgba(var(--accent-magenta-rgb), 0.16);
   border-color: var(--accent-magenta);
   font-family: inherit;
   font-weight: 600;
@@ -279,6 +394,22 @@ a:hover {
 .mod-retile:hover {
   background: var(--accent-magenta);
   color: #000;
+}
+
+.mod-theme {
+  cursor: pointer;
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(var(--accent-magenta-rgb), 0.35);
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mod-theme:hover {
+  background: rgba(var(--accent-magenta-rgb), 0.2);
+  border-color: var(--accent-magenta);
+  color: #fff;
 }
 
 @media (max-width: 1220px) {
@@ -413,7 +544,7 @@ main {
 .social-links a:hover {
   border-color: var(--accent-cyan);
   color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(0, 255, 238, 0.2), inset 0 0 10px rgba(0, 255, 238, 0.1);
+  box-shadow: 0 0 15px rgba(var(--accent-cyan-rgb), 0.2), inset 0 0 10px rgba(var(--accent-cyan-rgb), 0.1);
   transform: translateY(-2px);
 }
 
@@ -449,13 +580,13 @@ main {
   border-radius: 50%;
   left: -38px;
   top: 35px;
-  box-shadow: 0 0 10px rgba(0, 255, 238, 0.5);
+  box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.35);
   transition: all 0.3s ease;
 }
 
 .timeline-item:hover .timeline-dot {
   background: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 255, 238, 0.8);
+  box-shadow: 0 0 16px rgba(var(--accent-cyan-rgb), 0.5);
 }
 
 .timeline-content h3 {
@@ -476,9 +607,9 @@ main {
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.3rem 0.8rem;
-  background: rgba(0, 255, 238, 0.1);
+  background: rgba(var(--accent-cyan-rgb), 0.1);
   color: var(--accent-cyan);
-  border: 1px solid rgba(0, 255, 238, 0.2);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.2);
   border-radius: 2px;
 }
 
@@ -668,7 +799,7 @@ footer {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  box-shadow: 0 0 15px rgba(0, 255, 238, 0.3);
+  box-shadow: 0 0 15px rgba(var(--accent-cyan-rgb), 0.3);
 }
 
 a, button, [role="button"], .interactive, .hover-glow {
@@ -719,12 +850,12 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .tech-badge {
-  background: rgba(0, 255, 238, 0.1);
+  background: rgba(var(--accent-cyan-rgb), 0.1);
   color: var(--accent-cyan);
   padding: 0.4rem 1rem;
   border-radius: 4px;
   font-size: 0.85rem;
-  border: 1px solid rgba(0, 255, 238, 0.2);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.2);
 }
 
 .project-content {
@@ -769,7 +900,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .back-btn:hover {
-  text-shadow: 0 0 8px rgba(0, 255, 238, 0.5);
+  text-shadow: 0 0 8px rgba(var(--accent-cyan-rgb), 0.4);
 }
 
 .action-btn {
@@ -790,7 +921,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 .action-btn:hover {
   background: #fff;
   color: var(--bg-color);
-  box-shadow: 0 0 20px rgba(0, 255, 238, 0.4);
+  box-shadow: 0 0 20px rgba(var(--accent-cyan-rgb), 0.35);
 }
 
 .action-btn-secondary {
@@ -808,14 +939,14 @@ a, button, [role="button"], .interactive, .hover-glow {
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 255, 238, 0.15);
+  box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.15);
 }
 
 .action-btn-secondary:hover {
-  background: rgba(0, 255, 238, 0.15);
+  background: rgba(var(--accent-cyan-rgb), 0.15);
   color: var(--accent-cyan);
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 255, 238, 0.4);
+  box-shadow: 0 0 20px rgba(var(--accent-cyan-rgb), 0.35);
   transform: translateY(-2px);
 }
 
@@ -844,7 +975,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   overflow-y: auto;
   scrollbar-width: thin;
   position: relative;
-  box-shadow: 0 0 30px rgba(0, 255, 238, 0.2);
+  box-shadow: 0 0 30px rgba(var(--accent-cyan-rgb), 0.2);
   cursor: default;
 }
 
@@ -877,8 +1008,8 @@ a, button, [role="button"], .interactive, .hover-glow {
   align-items: center;
   justify-content: center;
   min-height: 60px;
-  background: rgba(0, 255, 238, 0.05);
-  border: 1px solid rgba(0, 255, 238, 0.2);
+  background: rgba(var(--accent-cyan-rgb), 0.05);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.2);
   padding: 0.85rem 0.75rem;
   text-align: center;
   line-height: 1.35;
@@ -890,9 +1021,9 @@ a, button, [role="button"], .interactive, .hover-glow {
 }
 
 .skill-badge-card:hover {
-  background: rgba(0, 255, 238, 0.15);
+  background: rgba(var(--accent-cyan-rgb), 0.15);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 255, 238, 0.1);
+  box-shadow: 0 5px 15px rgba(var(--accent-cyan-rgb), 0.1);
 }
 
 /* Floating Terminal Trigger */
@@ -915,14 +1046,14 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-size: 0.76rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(0, 255, 238, 0.18);
+  box-shadow: 0 0 12px rgba(var(--accent-cyan-rgb), 0.18);
   transition: all 0.2s ease;
 }
 
 .terminal-floating-btn:hover {
   background: var(--accent-cyan);
   color: var(--bg-color);
-  box-shadow: 0 0 25px rgba(0, 255, 238, 0.5);
+  box-shadow: 0 0 25px rgba(var(--accent-cyan-rgb), 0.35);
   transform: translateY(-2px);
 }
 
@@ -948,7 +1079,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 40px rgba(0, 255, 238, 0.25);
+  box-shadow: 0 0 40px rgba(var(--accent-cyan-rgb), 0.2);
   overflow: hidden;
   transition: all 0.2s ease;
 }
@@ -1129,7 +1260,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 
 .arch-node-card.selected {
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 15px rgba(0, 255, 238, 0.2);
+  box-shadow: 0 0 15px rgba(var(--accent-cyan-rgb), 0.2);
 }
 
 .arch-node-label {
@@ -1195,7 +1326,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-hotkeys-btn:hover {
   border-color: var(--accent-magenta);
   color: #fff;
-  box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+  box-shadow: 0 0 20px rgba(var(--accent-magenta-rgb), 0.25);
   transform: translateY(-2px);
 }
 
@@ -1220,8 +1351,8 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.08);
-  border: 1px solid rgba(0, 255, 238, 0.25);
+  background: rgba(var(--accent-cyan-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.25);
   padding: 0.3rem 0.7rem;
   border-radius: 4px;
   white-space: nowrap;
@@ -1290,14 +1421,14 @@ a, button, [role="button"], .interactive, .hover-glow {
   color: var(--accent-cyan);
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px dashed rgba(0, 255, 238, 0.45);
+  border-bottom: 1px dashed rgba(var(--accent-cyan-rgb), 0.45);
   transition: all 0.2s ease;
 }
 
 .hypr-footer-link:hover {
   color: #fff;
   border-bottom-color: var(--accent-magenta);
-  text-shadow: 0 0 10px rgba(0, 255, 238, 0.6);
+  text-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.4);
 }
 
 .hypr-compositor-viewport .hypr-footer {
@@ -1305,7 +1436,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   margin-top: 0;
   padding: 0.52rem 11rem;
   font-size: 0.72rem;
-  background: rgba(10, 11, 14, 0.78);
+  background: var(--bg-darker);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   z-index: 1200;
 }
@@ -1338,7 +1469,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   flex-wrap: wrap;
   gap: 0.6rem;
   padding: 0.38rem 0.75rem;
-  background: rgba(16, 18, 22, 0.82);
+  background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 3px solid var(--accent-cyan);
   border-radius: 5px;
@@ -1373,8 +1504,8 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-ws-layout-badge {
   font-size: 0.68rem;
   color: var(--accent-magenta);
-  background: rgba(255, 0, 170, 0.08);
-  border: 1px solid rgba(255, 0, 170, 0.25);
+  background: rgba(var(--accent-magenta-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-magenta-rgb), 0.25);
   padding: 0.12rem 0.45rem;
   border-radius: 3px;
 }
@@ -1404,7 +1535,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-size: 0.68rem;
   font-weight: 600;
   color: #fff;
-  background: rgba(255, 0, 170, 0.18);
+  background: rgba(var(--accent-magenta-rgb), 0.18);
   border: 1px solid var(--accent-magenta);
   border-radius: 4px;
   cursor: pointer;
@@ -1508,7 +1639,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   gap: 1rem;
   padding: 2rem;
   background: rgba(15, 15, 18, 0.65);
-  border: 1px dashed rgba(0, 255, 238, 0.3);
+  border: 1px dashed rgba(var(--accent-cyan-rgb), 0.3);
   border-radius: 6px;
   color: var(--text-muted);
   text-align: center;
@@ -1567,9 +1698,9 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-window.focused {
   border-color: var(--accent-cyan);
   box-shadow:
-    0 0 0 1px rgba(255, 0, 170, 0.35),
+    0 0 0 1px rgba(var(--accent-magenta-rgb), 0.35),
     0 12px 32px rgba(0, 0, 0, 0.7),
-    0 0 22px rgba(0, 255, 238, 0.18);
+    0 0 22px rgba(var(--accent-cyan-rgb), 0.18);
 }
 
 .hypr-window.unfocused {
@@ -1589,7 +1720,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   border-color: var(--accent-magenta);
   box-shadow:
     0 28px 65px rgba(0, 0, 0, 0.92),
-    0 0 30px rgba(255, 0, 170, 0.4);
+    0 0 30px rgba(var(--accent-magenta-rgb), 0.4);
   cursor: grab;
 }
 
@@ -1600,7 +1731,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 /* Monocle Fullscreen Mode (expands in-place to 100% of workspace) */
 .hypr-window.mode-fullscreen {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 35px rgba(0, 255, 238, 0.25);
+  box-shadow: 0 0 35px rgba(var(--accent-cyan-rgb), 0.25);
   cursor: default;
 }
 
@@ -1620,10 +1751,10 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-window.focused .hypr-window-titlebar {
   background: linear-gradient(
     90deg,
-    rgba(0, 255, 238, 0.11) 0%,
-    rgba(255, 0, 170, 0.07) 100%
+    rgba(var(--accent-cyan-rgb), 0.11) 0%,
+    rgba(var(--accent-magenta-rgb), 0.07) 100%
   );
-  border-bottom-color: rgba(0, 255, 238, 0.24);
+  border-bottom-color: rgba(var(--accent-cyan-rgb), 0.24);
 }
 
 .hypr-win-meta {
@@ -1652,8 +1783,8 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-size: 0.66rem;
   font-weight: 700;
   color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.1);
-  border: 1px solid rgba(0, 255, 238, 0.22);
+  background: rgba(var(--accent-cyan-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.22);
   padding: 0.06rem 0.38rem;
   border-radius: 3px;
   text-transform: lowercase;
@@ -1791,8 +1922,8 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.07);
-  border: 1px solid rgba(0, 255, 238, 0.22);
+  background: rgba(var(--accent-cyan-rgb), 0.07);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.22);
   padding: 0.24rem 0.6rem;
   border-radius: 4px;
   margin-bottom: 0.85rem;
@@ -1838,8 +1969,8 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.08);
-  border: 1px solid rgba(0, 255, 238, 0.3);
+  background: rgba(var(--accent-cyan-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.3);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1848,7 +1979,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-inspect-btn:hover {
   background: var(--accent-cyan);
   color: #000;
-  box-shadow: 0 0 15px rgba(0, 255, 238, 0.35);
+  box-shadow: 0 0 15px rgba(var(--accent-cyan-rgb), 0.35);
 }
 
 /* Fastfetch Tile */
@@ -1956,8 +2087,8 @@ a, button, [role="button"], .interactive, .hover-glow {
 
 .sim-state-pill.recovered {
   color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.14);
-  border: 1px solid rgba(0, 255, 238, 0.4);
+  background: rgba(var(--accent-cyan-rgb), 0.14);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.4);
 }
 
 .sim-metrics-grid {
@@ -2010,7 +2141,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   font-size: 0.7rem;
   font-weight: 600;
   color: #fff;
-  background: rgba(255, 0, 170, 0.15);
+  background: rgba(var(--accent-magenta-rgb), 0.15);
   border: 1px solid var(--accent-magenta);
   border-radius: 4px;
   cursor: pointer;
@@ -2020,7 +2151,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 .sim-chaos-btn:hover {
   background: var(--accent-magenta);
   color: #000;
-  box-shadow: 0 0 14px rgba(255, 0, 170, 0.45);
+  box-shadow: 0 0 14px rgba(var(--accent-magenta-rgb), 0.45);
 }
 
 /* ==========================================================================
@@ -2106,7 +2237,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   gap: 0.35rem;
   padding: 0.3rem 0.6rem;
   background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(0, 255, 238, 0.2);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.2);
   border-radius: 4px;
   font-size: 0.76rem;
   color: #fff;
@@ -2123,7 +2254,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-skill-pill .pill-dep-tag {
   font-size: 0.62rem;
   color: var(--accent-magenta);
-  background: rgba(255, 0, 170, 0.12);
+  background: rgba(var(--accent-magenta-rgb), 0.12);
   padding: 0.04rem 0.32rem;
   border-radius: 3px;
 }
@@ -2135,8 +2266,8 @@ a, button, [role="button"], .interactive, .hover-glow {
 
 .hypr-skill-pill.filter-match {
   border-color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.14);
-  box-shadow: 0 0 12px rgba(0, 255, 238, 0.22);
+  background: rgba(var(--accent-cyan-rgb), 0.14);
+  box-shadow: 0 0 12px rgba(var(--accent-cyan-rgb), 0.22);
 }
 
 .hypr-skill-filter-bar {
@@ -2181,7 +2312,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 
 .pacman-pkg-card {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(0, 255, 238, 0.22);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.22);
   border-radius: 5px;
   padding: 0.85rem;
   display: flex;
@@ -2206,7 +2337,7 @@ a, button, [role="button"], .interactive, .hover-glow {
 .pacman-pkg-repo {
   font-size: 0.64rem;
   color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.1);
+  background: rgba(var(--accent-cyan-rgb), 0.1);
   padding: 0.1rem 0.38rem;
   border-radius: 3px;
   white-space: nowrap;
@@ -2232,8 +2363,8 @@ a, button, [role="button"], .interactive, .hover-glow {
 .deps-chip {
   font-size: 0.66rem;
   color: var(--accent-magenta);
-  background: rgba(255, 0, 170, 0.1);
-  border: 1px solid rgba(255, 0, 170, 0.25);
+  background: rgba(var(--accent-magenta-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-magenta-rgb), 0.25);
   padding: 0.1rem 0.42rem;
   border-radius: 3px;
 }
@@ -2298,8 +2429,8 @@ a, button, [role="button"], .interactive, .hover-glow {
 .hypr-mini-tag {
   font-size: 0.66rem;
   color: var(--accent-cyan);
-  background: rgba(0, 255, 238, 0.08);
-  border: 1px solid rgba(0, 255, 238, 0.2);
+  background: rgba(var(--accent-cyan-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.2);
   padding: 0.12rem 0.42rem;
   border-radius: 3px;
 }
@@ -2324,7 +2455,7 @@ a, button, [role="button"], .interactive, .hover-glow {
   border: 1px solid var(--accent-cyan);
   border-left: 3px solid var(--accent-magenta);
   border-radius: 5px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 238, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(var(--accent-cyan-rgb), 0.2);
   font-size: 0.73rem;
   color: #fff;
   pointer-events: none;

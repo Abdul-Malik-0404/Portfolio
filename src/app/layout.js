@@ -17,8 +17,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={jetbrainsMono.variable}>
+    <html lang="en" data-theme="catppuccin">
+      <body className={jetbrainsMono.variable} data-theme="catppuccin">
         <HyprlandProvider>
           <CustomCursor />
           <TerminalModal />

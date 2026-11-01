@@ -13,9 +13,16 @@ export const WORKSPACE_LIST = [
   { id: 6, label: 'activities', target: 'extra', title: 'Activities' },
 ];
 
+export const THEMES = [
+  { id: 'catppuccin', label: 'Catppuccin Mocha', tag: 'catppuccin', short: 'mocha' },
+  { id: 'tokyo-night', label: 'Tokyo Night', tag: 'tokyo-night', short: 'tokyo' },
+  { id: 'neon', label: 'Hypr Neon (Legacy)', tag: 'neon', short: 'neon' },
+];
+
 export function HyprlandProvider({ children }) {
   const [activeWorkspace, setActiveWorkspace] = useState(1);
   const [slideDirection, setSlideDirection] = useState(1);
+  const [currentTheme, setCurrentTheme] = useState('catppuccin');
 
   const [focusedWindow, setFocusedWindow] = useState({
     id: 'hero-main',
@@ -39,6 +46,46 @@ export function HyprlandProvider({ children }) {
     const timer = setTimeout(() => setNotification(null), 2400);
     return () => clearTimeout(timer);
   }, [notification]);
+
+  // Sync theme with localStorage and root HTML attributes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('hypr-theme');
+      const validTheme = THEMES.some((t) => t.id === saved) ? saved : 'catppuccin';
+      setCurrentTheme(validTheme);
+      document.documentElement.setAttribute('data-theme', validTheme);
+      document.body.setAttribute('data-theme', validTheme);
+    }
+  }, []);
+
+  const setTheme = useCallback(
+    (nextTheme) => {
+      const target = THEMES.find((t) => t.id === nextTheme || t.short === nextTheme);
+      if (!target) return;
+      setCurrentTheme(target.id);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('hypr-theme', target.id);
+        document.documentElement.setAttribute('data-theme', target.id);
+        document.body.setAttribute('data-theme', target.id);
+      }
+      notify(`hyprctl: switched rice theme to ${target.label}`);
+    },
+    [notify]
+  );
+
+  const cycleTheme = useCallback(() => {
+    setCurrentTheme((prev) => {
+      const idx = THEMES.findIndex((t) => t.id === prev);
+      const next = THEMES[(idx + 1) % THEMES.length];
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('hypr-theme', next.id);
+        document.documentElement.setAttribute('data-theme', next.id);
+        document.body.setAttribute('data-theme', next.id);
+      }
+      notify(`hyprctl: switched rice theme to ${next.label}`);
+      return next.id;
+    });
+  }, [notify]);
 
   const switchWorkspace = useCallback((nextWs) => {
     const clamped = Math.max(1, Math.min(WORKSPACE_LIST.length, nextWs));
@@ -266,6 +313,10 @@ export function HyprlandProvider({ children }) {
         modifiedCount,
         notification,
         notify,
+        currentTheme,
+        setTheme,
+        cycleTheme,
+        THEMES,
       }}
     >
       {children}
@@ -298,6 +349,10 @@ export function useHyprland() {
       modifiedCount: 0,
       notification: null,
       notify: () => {},
+      currentTheme: 'catppuccin',
+      setTheme: () => {},
+      cycleTheme: () => {},
+      THEMES,
     };
   }
   return ctx;

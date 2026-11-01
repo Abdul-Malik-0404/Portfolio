@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { GitBranch, Clock, Terminal, RotateCcw } from 'lucide-react';
+import { GitBranch, Clock, Terminal, RotateCcw, Palette } from 'lucide-react';
 import { useHyprland } from './HyprlandContext';
 
 export default function WaybarHUD() {
@@ -12,7 +12,10 @@ export default function WaybarHUD() {
     loading: true,
   });
 
-  const { focusedWindow, modifiedCount, restoreAllWindows } = useHyprland();
+  const { focusedWindow, modifiedCount, restoreAllWindows, currentTheme, cycleTheme, THEMES } =
+    useHyprland();
+
+  const currentThemeObj = THEMES?.find((t) => t.id === currentTheme);
 
   // Real-time clock in Colombo timezone (Asia/Colombo)
   useEffect(() => {
@@ -106,6 +109,16 @@ export default function WaybarHUD() {
           git: {githubStats.latestRepo}
         </a>
       </div>
+
+      <button
+        type="button"
+        onClick={cycleTheme}
+        className="waybar-module mod-theme"
+        title={`Rice Theme: ${currentThemeObj?.label || currentTheme} (Click or press 'T' to switch)`}
+      >
+        <Palette size={13} className="icon-magenta" />
+        <span>{currentThemeObj?.short || currentTheme}</span>
+      </button>
 
       <div className="waybar-module mod-time">
         <Clock size={13} className="icon-cyan" />

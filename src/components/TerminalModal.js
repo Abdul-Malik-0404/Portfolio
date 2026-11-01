@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react';
+import { useHyprland } from './HyprlandContext';
 
 const ASCII_LOGO = `
        /\\         malik@archlinux
@@ -21,6 +22,7 @@ const ASCII_LOGO = `
 const HELP_TEXT = `
 Available commands:
   neofetch      - Display system info & specs
+  theme [name]  - View or switch rice theme (catppuccin | tokyo-night | neon)
   about         - Who is Abdul Malik?
   skills        - List core technical stack
   projects      - List featured projects
@@ -618,6 +620,7 @@ query options:
 }
 
 export default function TerminalModal() {
+  const { currentTheme, setTheme } = useHyprland();
   const [isOpen, setIsOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
   const [inputVal, setInputVal] = useState('');
@@ -682,6 +685,42 @@ export default function TerminalModal() {
         const res = handlePacmanCommand(pacmanArgs);
         if (res.text) {
           newHistory.push(res);
+        }
+        setHistory(newHistory);
+        setInputVal('');
+        return;
+      }
+
+      if (tokens[0]?.toLowerCase() === 'theme') {
+        const themeArg = tokens[1]?.toLowerCase();
+        if (!themeArg) {
+          newHistory.push({
+            type: 'output',
+            text: `Current rice theme: ${currentTheme}\nAvailable themes:\n  • catppuccin  (Catppuccin Mocha - soft pastel, easy on eyes)\n  • tokyo-night (Tokyo Night - deep blue aesthetic)\n  • neon        (Hypr Neon - high contrast cyber glow)\n\nUsage: theme [catppuccin|tokyo-night|neon] (or press 'T' to cycle)`
+          });
+        } else if (['catppuccin', 'mocha'].includes(themeArg)) {
+          setTheme('catppuccin');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Catppuccin Mocha (~/.config/hypr/themes/catppuccin.conf applied)`
+          });
+        } else if (['tokyo-night', 'tokyo', 'night'].includes(themeArg)) {
+          setTheme('tokyo-night');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Tokyo Night (~/.config/hypr/themes/tokyo-night.conf applied)`
+          });
+        } else if (['neon', 'hypr-neon', 'cyber'].includes(themeArg)) {
+          setTheme('neon');
+          newHistory.push({
+            type: 'success',
+            text: `[hyprctl]: rice theme switched to Hypr Neon (~/.config/hypr/themes/neon.conf applied)`
+          });
+        } else {
+          newHistory.push({
+            type: 'error',
+            text: `Unknown theme: '${tokens[1]}'. Valid options: catppuccin, tokyo-night, neon.`
+          });
         }
         setHistory(newHistory);
         setInputVal('');

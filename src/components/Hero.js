@@ -13,8 +13,12 @@ import {
 import LinkedinIcon from './LinkedinIcon';
 import GithubIcon from './GithubIcon';
 import { HyprWorkspace } from './HyprWindow';
+import { useHyprland } from './HyprlandContext';
 
 export default function Hero() {
+  const { currentTheme, THEMES } = useHyprland();
+  const currentThemeObj = THEMES?.find((t) => t.id === currentTheme);
+
   const [chaosState, setChaosState] = useState('healthy'); // 'healthy' | 'evacuating' | 'recovered'
   const [metrics, setMetrics] = useState({
     rtpRate: 14.2,
@@ -274,17 +278,20 @@ export default function Hero() {
               <span className="ff-key">WM:</span> Hyprland (Wayland)
             </div>
             <div>
+              <span className="ff-key">Theme:</span> {currentThemeObj?.label || 'Catppuccin Mocha'}
+            </div>
+            <div>
               <span className="ff-key">Font:</span> JetBrains Mono
             </div>
             <div>
               <span className="ff-key">Focus:</span> Distributed SFUs &amp; AI
             </div>
             <div className="ff-swatches">
-              <span style={{ background: '#00ffee' }} />
-              <span style={{ background: '#ff00aa' }} />
-              <span style={{ background: '#5af78e' }} />
-              <span style={{ background: '#ffee00' }} />
-              <span style={{ background: '#bd93f9' }} />
+              <span style={{ background: 'var(--swatch-1)' }} />
+              <span style={{ background: 'var(--swatch-2)' }} />
+              <span style={{ background: 'var(--swatch-3)' }} />
+              <span style={{ background: 'var(--swatch-4)' }} />
+              <span style={{ background: 'var(--swatch-5)' }} />
             </div>
           </div>
         </div>
@@ -320,6 +327,9 @@ export default function Hero() {
                 dwindle layout)
               </div>
               <div>
+                <span className="ff-key">Theme:</span> {currentThemeObj?.label || 'Catppuccin Mocha'}
+              </div>
+              <div>
                 <span className="ff-key">Bar / Launcher:</span> Waybar + Rofi
                 Wayland
               </div>
@@ -332,11 +342,11 @@ export default function Hero() {
                 Kubernetes (KinD)
               </div>
               <div className="ff-swatches" style={{ marginTop: '0.75rem' }}>
-                <span style={{ background: '#00ffee', width: 28, height: 10 }} />
-                <span style={{ background: '#ff00aa', width: 28, height: 10 }} />
-                <span style={{ background: '#5af78e', width: 28, height: 10 }} />
-                <span style={{ background: '#ffee00', width: 28, height: 10 }} />
-                <span style={{ background: '#bd93f9', width: 28, height: 10 }} />
+                <span style={{ background: 'var(--swatch-1)', width: 28, height: 10 }} />
+                <span style={{ background: 'var(--swatch-2)', width: 28, height: 10 }} />
+                <span style={{ background: 'var(--swatch-3)', width: 28, height: 10 }} />
+                <span style={{ background: 'var(--swatch-4)', width: 28, height: 10 }} />
+                <span style={{ background: 'var(--swatch-5)', width: 28, height: 10 }} />
               </div>
             </div>
           </div>

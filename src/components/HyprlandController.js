@@ -7,7 +7,7 @@ import { useHyprland, WORKSPACE_LIST } from './HyprlandContext';
 
 export default function HyprlandController() {
   const [showHelp, setShowHelp] = useState(false);
-  const { activeWorkspace, switchWorkspace, notification } = useHyprland();
+  const { activeWorkspace, switchWorkspace, notification, cycleTheme } = useHyprland();
 
   // Keyboard shortcut listener
   useEffect(() => {
@@ -22,6 +22,12 @@ export default function HyprlandController() {
 
       if (e.key === 'Escape' && showHelp) {
         setShowHelp(false);
+        return;
+      }
+
+      if (e.key === 't' || e.key === 'T') {
+        e.preventDefault();
+        cycleTheme();
         return;
       }
 
@@ -43,7 +49,7 @@ export default function HyprlandController() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [showHelp, activeWorkspace, switchWorkspace]);
+  }, [showHelp, activeWorkspace, switchWorkspace, cycleTheme]);
 
   return (
     <>
@@ -155,6 +161,12 @@ export default function HyprlandController() {
                   <span className="key-combo">Drag Split Bar</span>
                   <span className="shortcut-desc">
                     Resize Master / Stack split ratio dynamically
+                  </span>
+                </div>
+                <div className="shortcut-row">
+                  <span className="key-combo">T</span>
+                  <span className="shortcut-desc">
+                    Cycle Rice Theme (<b>Catppuccin Mocha</b> / <b>Tokyo Night</b> / <b>Hypr Neon</b>)
                   </span>
                 </div>
                 <div className="shortcut-row">
