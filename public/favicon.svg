@@ -1,17 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <!-- Gradient Definition for the text -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
   <defs>
-    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" /> <!-- Tailwind Sky 400 -->
-      <stop offset="100%" stop-color="#818cf8" /> <!-- Tailwind Indigo 400 -->
+    <linearGradient id="arch-m-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#89dceb" />
+      <stop offset="50%" stop-color="#89b4fa" />
+      <stop offset="100%" stop-color="#cba6f7" />
     </linearGradient>
   </defs>
+  <!-- Dark crust squircle background -->
+  <rect width="120" height="120" rx="28" fill="#11111b" />
+  <rect width="116" height="116" x="2" y="2" rx="26" fill="none" stroke="rgba(137, 220, 235, 0.25)" stroke-width="1.5" />
 
-  <!-- Dark slate background with a modern squircle border radius -->
-  <rect width="120" height="120" rx="26" fill="#0f172a" />
-  
-  <!-- Monospace tag centered for scalability -->
-  <text x="60" y="62" font-family="&#39;Fira Code&#39;, &#39;JetBrains Mono&#39;, &#39;Consolas&#39;, monospace" font-size="34" font-weight="bold" fill="url(#text-grad)" text-anchor="middle" dominant-baseline="central" letter-spacing="-1">
-    &lt;am/&gt;
-  </text>
+  <!-- Centered Arch-style M vector -->
+  <g transform="translate(60, 60) scale(0.010465, -0.010465) translate(-5120, -5120)" fill="url(#arch-m-grad)">
+    <path d="M3802 7992 c-119 -369 -262 -747 -446 -1175 -58 -136 -106 -254 -106 -262 0 -33 409 -434 558 -547 28 -22 52 -42 52 -44 0 -8 -155 63 -260 118 -131 70 -230 133 -347 224 -45 35 -84 64 -88 64 -3 0 -27 -44 -52 -97 -271 -583 -471 -969 -963 -1858 -679 -1227 -1290 -2345 -1290 -2362 0 -2 39 22 88 54 558 363 1080 623 1629 814 146 50 458 143 537 159 l58 12 -6 51 c-28 241 -16 507 35 756 83 411 261 757 458 890 82 56 145 75 235 69 86 -6 136 -27 221 -96 176 -141 348 -495 418 -857 40 -204 50 -319 45 -531 -2 -107 -3 -194 -1 -194 1 0 30 7 65 15 183 42 440 60 648 46 115 -9 321 -40 364 -57 10 -4 12 30 8 180 -3 107 0 231 7 298 57 543 287 1031 548 1164 52 26 68 29 153 29 110 0 148 -14 245 -93 231 -185 419 -645 466 -1132 11 -119 7 -380 -7 -492 l-6 -46 58 -12 c238 -50 691 -205 1029 -353 374 -163 837 -416 1153 -629 71 -48 85 -51 58 -13 -7 11 -65 117 -128 235 -329 613 -303 569 -381 644 -254 242 -656 564 -971 778 -71 48 -125 88 -119 88 14 0 229 -80 348 -130 100 -42 449 -213 473 -233 27 -22 23 5 -10 65 -280 508 -824 1498 -887 1613 -106 195 -518 1022 -615 1236 -160 355 -211 473 -316 734 -129 322 -229 597 -320 875 l-67 205 -53 -165 c-122 -382 -293 -832 -484 -1274 l-86 -200 38 -45 c97 -120 415 -421 557 -529 l30 -22 -54 20 c-160 61 -428 217 -568 331 -40 32 -76 59 -80 59 -5 0 -44 -78 -87 -173 -124 -267 -455 -927 -466 -927 -5 0 -86 152 -179 338 -454 908 -836 1816 -1022 2431 -23 75 -44 139 -48 143 -3 4 -35 -82 -69 -190z" />
+  </g>
 </svg>
