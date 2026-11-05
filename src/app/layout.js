@@ -13,6 +13,14 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   title: 'Abdul Malik | Portfolio',
   description: 'Portfolio of Abdul Malik, an aspiring Software Engineer & AI Developer.',
+  icons: {
+    icon: [
+      { url: '/Favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/Favicon.svg',
+    apple: '/Favicon.svg',
+  },
 };
 
 export default function RootLayout({ children }) {

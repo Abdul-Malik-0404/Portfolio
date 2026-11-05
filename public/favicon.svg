@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Gradient Definition for the text -->
+  <defs>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" /> <!-- Tailwind Sky 400 -->
+      <stop offset="100%" stop-color="#818cf8" /> <!-- Tailwind Indigo 400 -->
+    </linearGradient>
+  </defs>
+
+  <!-- Dark slate background with a modern squircle border radius -->
+  <rect width="120" height="120" rx="26" fill="#0f172a" />
+  
+  <!-- Monospace tag centered for scalability -->
+  <text x="60" y="62" font-family="&#39;Fira Code&#39;, &#39;JetBrains Mono&#39;, &#39;Consolas&#39;, monospace" font-size="34" font-weight="bold" fill="url(#text-grad)" text-anchor="middle" dominant-baseline="central" letter-spacing="-1">
+    &lt;am/&gt;
+  </text>
+</svg>
